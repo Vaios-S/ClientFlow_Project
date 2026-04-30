@@ -308,11 +308,23 @@
             },
             body: JSON.stringify(projectData),
           })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Project created:", data);
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to add project.");
+              }
+
+              return response.json();
+            })
+            .then((createdProject) => {
+              projects.push(createdProject);
               projectForm.reset();
               addClientModal.classList.remove("addClient-modal");
+              renderInfo(clients, projects, teamMembers);
+              alert("Project added successfully.");
+            })
+            .catch((error) => {
+              console.log("Error:", error);
+              alert("An error occurred while adding the project.");
             });
         });
       }
