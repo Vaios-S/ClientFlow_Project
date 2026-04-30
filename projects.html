@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects - ClientFlow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="logo">
+            <div class="logo__mark">CF</div>
+            <div>
+              <h1 class="logo__title">ClientFlow</h1>
+              <p class="logo__subtitle">Project Dashboard</p>
+            </div>
+          </div>
+
+          <nav class="sidebar__nav">
+            <a class="nav-item" href="overview.html">Overview</a>
+            <a class="nav-item nav-item--active" href="projects.html"
+              >Projects</a
+            >
+            <a class="nav-item" href="clients.html">Clients</a>
+            <a class="nav-item" href="reports.html">Reports</a>
+            <a class="nav-item" href="settings.html">Settings</a>
+          </nav>
+        </div>
+
+        <div class="detailsName">
+          <div class="workspace-card">
+            <p class="workspace-card__label">Workspace</p>
+            <h3 class="workspace-card__title">Studio Alpha</h3>
+          </div>
+
+          <div class="user-card">
+            <div class="avatar">VS</div>
+            <div>
+              <p class="user-card__name">Vaios S.</p>
+              <p class="user-card__role">Project Manager</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="page-eyebrow">Workspace</p>
+            <h2 class="page-title">Projects</h2>
+          </div>
+
+          <div class="topbar__actions">
+            <button class="primary-btn" id="addProject">Add Project</button>
+          </div>
+        </header>
+
+        <section class="hidden" id="addClientModal">
+          <div class="addClient-card">
+            <form id="projectForm">
+              <h3>Add New Project</h3>
+
+              <label for="projectName">Project Name:</label>
+              <input type="text" id="projectName" name="projectName" required />
+
+              <label for="companyName">Company Name:</label>
+              <select id="companyName" name="companyName" required></select>
+              <label for="teamMembers">Team Members:</label>
+              <select id="teamMembers" name="teamMembers" required></select>
+              <label for="status">Status:</label>
+              <div class="status-tags">
+                <input
+                  type="radio"
+                  name="status"
+                  id="planning"
+                  value="Planning"
+                  checked
+                />
+                <label for="planning">Planning</label>
+                <input
+                  type="radio"
+                  name="status"
+                  id="inProgress"
+                  value="In Progress"
+                />
+                <label for="inProgress">In Progress</label>
+                <input type="radio" name="status" id="review" value="Review" />
+                <label for="review">Review</label>
+                <input
+                  type="radio"
+                  name="status"
+                  id="Blocked"
+                  value="Blocked"
+                />
+                <label for="Blocked">Blocked</label>
+                <input
+                  type="radio"
+                  name="status"
+                  id="completed"
+                  value="Completed"
+                />
+                <label for="completed">Completed</label>
+              </div>
+
+              <label for="priority">Priority:</label>
+              <div class="status-tags">
+                <input
+                  type="radio"
+                  name="priority"
+                  id="low"
+                  value="Low"
+                  checked
+                />
+                <label for="low">Low</label>
+                <input
+                  type="radio"
+                  name="priority"
+                  id="medium"
+                  value="Medium"
+                />
+                <label for="medium">Medium</label>
+                <input type="radio" name="priority" id="high" value="High" />
+                <label for="high">High</label>
+              </div>
+
+              <label for="dueDate">Due Date:</label>
+              <input type="date" id="dueDate" name="dueDate" required />
+
+              <label for="budget">Budget:</label>
+              <input type="number" id="budget" name="budget" required />
+
+              <div class="addClient-actions">
+                <button
+                  type="button"
+                  class="secondary-btn"
+                  id="closeClientModal"
+                >
+                  Cancel
+                </button>
+                <button type="submit" class="primary-btn" id="createClient">
+                  Create Client
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <h3>All Projects</h3>
+              <p class="panel__description">
+                Manage active client work, deadlines, owners and budgets.
+              </p>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <div class="toolbar__search">
+              <input
+                type="text"
+                id="searchProject"
+                placeholder="Search projects, clients..."
+              />
+            </div>
+
+            <div class="toolbar__filters">
+              <select id="selectedClient"></select>
+
+              <select id="selectedTeamMembers"></select>
+
+              <select id="selectedStatus">
+                <option>All Statuses</option>
+                <option value="Planning">Planning</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Review">Review</option>
+                <option value="Completed">Completed</option>
+                <option value="Blocked">Blocked</option>
+              </select>
+
+              <select id="selectedPriority">
+                <option value="All Priorities">All Priorities</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+
+              <button class="primary-btn btnflex" id="clearBtn">Clear</button>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="data-table" id="renderProjects"></table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const addProjectBtn = document.getElementById("addProject");
+      const addClientModal = document.getElementById("addClientModal");
+      const closeClientModalBtn = document.getElementById("closeClientModal");
+      const companyNameSelect = document.getElementById("companyName");
+      const teamMembersSelect = document.getElementById("teamMembers");
+      const renderProjectsTable = document.getElementById("renderProjects");
+      const clearBtn = document.getElementById("clearBtn");
+      const searchProject = document.getElementById("searchProject");
+      const selectedStatus = document.getElementById("selectedStatus");
+      const selectedTeamMembers = document.getElementById(
+        "selectedTeamMembers",
+      );
+      const selectedPriority = document.getElementById("selectedPriority");
+      const selectedClient = document.getElementById("selectedClient");
+
+      // Fetch clients and populate the company name dropdown
+      function fetchClients() {
+        fetch("http://localhost:3000/clients")
+          .then((response) => response.json())
+          .then((data) => {
+            companyNameSelect.innerHTML =
+              '<option value="Select a Company">Select a Company...</option>';
+
+            data.forEach((client) => {
+              const option = document.createElement("option");
+              option.value = client.id;
+              option.innerHTML = client.companyName;
+              companyNameSelect.appendChild(option);
+            });
+          });
+      }
+
+      function fetchTeam() {
+        fetch("http://localhost:3000/teamMembers")
+          .then((response) => response.json())
+          .then((data) => {
+            teamMembersSelect.innerHTML =
+              '<option value="Select a Team Member">Select a Team Member...</option>';
+
+            data.forEach((member) => {
+              const option = document.createElement("option");
+              option.value = member.fullName;
+              option.innerHTML = `${member.fullName} / ${member.department}`;
+              teamMembersSelect.appendChild(option);
+            });
+          });
+      }
+
+      // Helper functions to get CSS classes based on status and priority
+      function getStatusClass(status) {
+        if (status === "Planning") return "planning";
+        if (status === "In Progress") return "inProgress";
+        if (status === "Review") return "review";
+        if (status === "Blocked") return "blocked";
+        return "completed";
+      }
+
+      // Helper function to get CSS class based on priority
+      function getPriorityClass(priority) {
+        if (priority === "High") return "high";
+        if (priority === "Medium") return "medium";
+        return "low";
+      }
+
+      // Create a new project
+      function createProject(clients, projects, teamMembers) {
+        const clientOptions = clients.map((client) => ({
+          id: client.id,
+          name: client.companyName,
+        }));
+        const teamMemberOptions = teamMembers.map((member) => ({
+          name: member.fullName,
+          department: member.department,
+          avatar: member.avatar,
+          email: member.email,
+        }));
+        const projectForm = document.getElementById("projectForm");
+
+        projectForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const projectData = {
+            clientId: companyNameSelect.value,
+            projectName: document.getElementById("projectName").value,
+            clientName: clientOptions.find(
+              (client) => client.id === companyNameSelect.value,
+            )?.name,
+            teamMembers: teamMembersSelect.value,
+            email: teamMemberOptions.find(
+              (member) => member.name === teamMembersSelect.value,
+            )?.email,
+            avatar: teamMemberOptions.find(
+              (member) => member.name === teamMembersSelect.value,
+            )?.avatar,
+            status: document.querySelector('input[name="status"]:checked')
+              .value,
+            priority: document.querySelector('input[name="priority"]:checked')
+              .value,
+            dueDate: document.getElementById("dueDate").value,
+            budget: parseFloat(document.getElementById("budget").value).toFixed(
+              2,
+            ),
+          };
+          fetch("http://localhost:3000/projects", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(projectData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Project created:", data);
+              projectForm.reset();
+              addClientModal.classList.remove("addClient-modal");
+            });
+        });
+      }
+
+      // Render projects in the table
+      function fetchProjects(projects) {
+        renderProjectsTable.innerHTML = "";
+
+        const thred = document.createElement("thead");
+        thred.innerHTML = `<tr>
+                          <th>Project Name</th>
+                          <th>Client</th>
+                          <th>Team Member</th>
+                          <th>Email</th>
+                          <th>Status</th>
+                          <th>Priority</th>
+                          <th>Due Date</th>
+                          <th>Budget</th>
+                          <th>Role</th>
+                          <th>Delete</th>
+                          </tr>`;
+        renderProjectsTable.appendChild(thred);
+        const tbody = document.createElement("tbody");
+        projects.forEach((project) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td><a class="table-link" href="#">${project.projectName}</a></td>
+                          <td>${project.clientName}</td>
+                          <td><div class="avatar-container"><img src="${project.avatar}" alt="Avatar" class="avatar avatar--small">${project.teamMembers}</div></td>
+                          <td>${project.email}</td>
+                          <td><select class="status-select dropdown badge badge--${getStatusClass(project.status)}" data-project-id="${project.id}">
+                            <option class="badge badge--planning" value="Planning" ${project.status === "Planning" ? "selected" : ""}>Planning</option>
+                            <option class="badge badge--inProgress" value="In Progress" ${project.status === "In Progress" ? "selected" : ""}>In Progress</option>
+                            <option class="badge badge--review" value="Review" ${project.status === "Review" ? "selected" : ""}>Review</option>
+                            <option class="badge badge--blocked" value="Blocked" ${project.status === "Blocked" ? "selected" : ""}>Blocked</option>
+                            <option class="badge badge--completed" value="Completed" ${project.status === "Completed" ? "selected" : ""}>Completed</option>
+                          </select></td>
+                          <td><select class="priority-select dropdown badge badge--${getPriorityClass(project.priority)}"  data-project-id="${project.id}">
+                            <option class="badge badge--high " value="High" ${project.priority === "High" ? "selected" : ""}>High</option>
+                            <option class="badge badge--medium " value="Medium" ${project.priority === "Medium" ? "selected" : ""}>Medium</option>
+                            <option class="badge badge--low " value="Low" ${project.priority === "Low" ? "selected" : ""}>Low</option>
+                          </select></td>
+                          <td><input class="duedate-select badge" type="date" value="${project.dueDate}" data-project-id="${project.id}"></td>
+                          <td>
+                            <div class=" budget-input">
+                            <span class="currency">€</span>
+                            <input class="budget-select" type="number" value="${project.budget}" data-project-id="${project.id}"/>
+                          </div></td>
+                          <td>${project.role}</td>
+                          <td><button class="icon-btn" onclick="deleteProject('${project.id}')">🗑️</button></td>
+                        `;
+          tbody.appendChild(row);
+        });
+        renderProjectsTable.appendChild(tbody);
+      }
+
+      // Delete a project
+      function deleteProject(projectId) {
+        if (confirm("Are you sure you want to delete this project?")) {
+          fetch(`http://localhost:3000/projects/${projectId}`, {
+            method: "DELETE",
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("Project deleted successfully.");
+              } else {
+                alert("Failed to delete project.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error deleting project:", error);
+              alert("An error occurred while deleting the project.");
+            });
+        }
+      }
+
+      function updateProjectStatus(projectId, status, selectElement) {
+        fetch(`http://localhost:3000/projects/${projectId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to update status.");
+            }
+            return response.json();
+          })
+          .then((updateProject) => {
+            const project = projects.find((p) => p.id === projectId);
+            if (project) {
+              project.status = updateProject.status;
+            }
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+            alert("Could not update project status. Please try again.");
+            selectElement.value =
+              selectElement.dataset.previousValue || selectElement.value;
+          });
+      }
+
+      function updateProjectPriority(projectId, priority, selectElement) {
+        fetch(`http://localhost:3000/projects/${projectId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ priority }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to update priority.");
+            }
+            return response.json();
+          })
+          .then((updateProject) => {
+            const project = projects.find((p) => p.id === projectId);
+            if (project) {
+              project.priority = updateProject.priority;
+            }
+            fetchProjects(getFilteredProjects(projects));
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+            alert("Could not update project priority. Please try again.");
+            selectElement.value =
+              selectElement.dataset.previousValue || selectElement.value;
+          });
+      }
+
+      function updateProjectDueDate(projectId, dueDate, selectElement) {
+        fetch(`http://localhost:3000/projects/${projectId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ dueDate }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to update dueDate.");
+            }
+            return response.json();
+          })
+          .then((updateProject) => {
+            const project = projects.find((p) => p.id === projectId);
+            if (project) {
+              project.dueDate = updateProject.dueDate;
+            }
+            fetchProjects(getFilteredProjects(projects));
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+            alert("Could not update client dueDate. Please try again.");
+            selectElement.value =
+              selectElement.dataset.previousValue || selectElement.value;
+          });
+      }
+
+      function updateProjectBudget(projectId, budget, selectElement) {
+        fetch(`http://localhost:3000/projects/${projectId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ budget }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to update dueDate.");
+            }
+            return response.json();
+          })
+          .then((updateProject) => {
+            const project = projects.find((p) => p.id === projectId);
+            if (project) {
+              project.budget = updateProject.budget;
+            }
+            fetchProjects(getFilteredProjects(projects));
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+            alert("Could not update client dueDate. Please try again.");
+            selectElement.value =
+              selectElement.dataset.previousValue || selectElement.value;
+          });
+      }
+
+      // Combine data from clients, projects, and team members to render the project info
+      function renderInfo(clients, projects, teamMembers) {
+        const renderedInfo = projects.map((project) => {
+          const client = clients.find((c) => c.id === project.clientId);
+          const member = teamMembers.find(
+            (m) => m.fullName === project.teamMembers,
+          );
+          const avatar = teamMembers.find(
+            (m) => m.fullName === project.teamMembers,
+          );
+
+          const role = teamMembers.find(
+            (m) => m.fullName === project.teamMembers,
+          );
+          return {
+            ...project,
+            clientName: client ? client.companyName : "Unknown",
+            email: member ? member.email : "Unknown",
+            avatar: avatar ? avatar.avatar : "Unknown",
+            role: role ? role.department : "Unknown",
+          };
+        });
+
+        fetchProjects(renderedInfo);
+      }
+
+      // Get filtered projects based on search and filter criteria
+      function getFilteredProjects(projects) {
+        let filteredProjects = [...projects];
+
+        const searchValue = searchProject.value.toLowerCase().trim();
+        const selectedStatusValue = selectedStatus.value;
+        const selectedTeamMembersValue = selectedTeamMembers.value;
+        const selectedPriorityValue = selectedPriority.value;
+        const selectedClientValue = selectedClient.value;
+
+        if (selectedStatusValue !== "All Statuses") {
+          filteredProjects = filteredProjects.filter(
+            (project) => project.status === selectedStatusValue,
+          );
+        }
+        if (selectedTeamMembersValue !== "All Team Members") {
+          filteredProjects = filteredProjects.filter(
+            (project) => project.teamMembers === selectedTeamMembersValue,
+          );
+        }
+
+        if (selectedPriorityValue !== "All Priorities") {
+          filteredProjects = filteredProjects.filter(
+            (project) => project.priority === selectedPriorityValue,
+          );
+        }
+
+        if (selectedClientValue !== "All Clients") {
+          filteredProjects = filteredProjects.filter(
+            (project) => project.clientName === selectedClientValue,
+          );
+        }
+
+        if (searchValue) {
+          filteredProjects = filteredProjects.filter(
+            (project) =>
+              project.projectName.toLowerCase().includes(searchValue) ||
+              project.clientName.toLowerCase().includes(searchValue) ||
+              project.teamMembers.toLowerCase().includes(searchValue) ||
+              project.email.toLowerCase().includes(searchValue) ||
+              project.status.toLowerCase().includes(searchValue) ||
+              project.priority.toLowerCase().includes(searchValue) ||
+              project.budget.toLowerCase().includes(searchValue),
+          );
+        }
+        return filteredProjects;
+      }
+
+      // Render team members in the filter dropdown
+      function renderTeamMembersOptions(teamMembers) {
+        selectedTeamMembers.innerHTML = `<option value="All Team Members">All Team Members</option>
+      `;
+
+        teamMembers.forEach((member) => {
+          const option = document.createElement("option");
+          option.value = member.fullName;
+          option.innerHTML = `${member.fullName} / ${member.department}`;
+          selectedTeamMembers.appendChild(option);
+        });
+      }
+
+      // Render Clients in the filter dropdown
+      function renderClientOptions(clients) {
+        selectedClient.innerHTML = `<option value="All Clients">All Clients</option>
+      `;
+
+        clients.forEach((client) => {
+          const option = document.createElement("option");
+          option.value = client.companyName;
+          option.innerHTML = client.companyName;
+          selectedClient.appendChild(option);
+        });
+      }
+
+      // Initial setup
+
+      // Open the modal when clicking the "Add Project" button
+      addProjectBtn.addEventListener("click", () => {
+        addClientModal.classList.add("addClient-modal");
+      });
+      // Close the modal when clicking the cancel button
+      closeClientModalBtn.addEventListener("click", () => {
+        addClientModal.classList.remove("addClient-modal");
+      });
+
+      // Fetch clients and projects data in parallel and initialize the app
+      Promise.all([
+        fetch("http://localhost:3000/clients"),
+        fetch("http://localhost:3000/projects"),
+        fetch("http://localhost:3000/teamMembers"),
+      ])
+        .then(([clients, projects, teamMembers]) => {
+          return Promise.all([
+            clients.json(),
+            projects.json(),
+            teamMembers.json(),
+          ]);
+        })
+        .then(([clients, projects, teamMembers]) => {
+          fetchClients(clients);
+
+          fetchTeam(teamMembers);
+
+          createProject(clients, projects, teamMembers);
+
+          renderInfo(clients, projects, teamMembers);
+
+          renderTeamMembersOptions(teamMembers);
+
+          renderClientOptions(clients);
+
+          selectedStatus.addEventListener("change", () => {
+            const fileteredProjects = getFilteredProjects(projects);
+            fetchProjects(fileteredProjects);
+            renderInfo(clients, fileteredProjects, teamMembers);
+          });
+          selectedTeamMembers.addEventListener("change", () => {
+            const fileteredProjects = getFilteredProjects(projects);
+            fetchProjects(fileteredProjects);
+            renderInfo(clients, fileteredProjects, teamMembers);
+          });
+          selectedPriority.addEventListener("change", () => {
+            const fileteredProjects = getFilteredProjects(projects);
+            fetchProjects(fileteredProjects);
+            renderInfo(clients, fileteredProjects, teamMembers);
+          });
+
+          selectedClient.addEventListener("change", () => {
+            const fileteredProjects = getFilteredProjects(projects);
+            fetchProjects(fileteredProjects);
+            renderInfo(clients, fileteredProjects, teamMembers);
+          });
+
+          searchProject.addEventListener("input", () => {
+            const fileteredProjects = getFilteredProjects(projects);
+            fetchProjects(fileteredProjects);
+            renderInfo(clients, fileteredProjects, teamMembers);
+          });
+
+          renderProjectsTable.addEventListener("change", (e) => {
+            if (e.target.classList.contains("status-select")) {
+              const projectId = e.target.dataset.projectId;
+              const status = e.target.value;
+              updateProjectStatus(projectId, status, e.target);
+            }
+          });
+
+          renderProjectsTable.addEventListener("change", (e) => {
+            if (e.target.classList.contains("priority-select")) {
+              const projectId = e.target.dataset.projectId;
+              const priority = e.target.value;
+              updateProjectPriority(projectId, priority, e.target);
+            }
+          });
+
+          renderProjectsTable.addEventListener("change", (e) => {
+            if (e.target.classList.contains("duedate-select")) {
+              const projectId = e.target.dataset.projectId;
+              const duedate = e.target.value;
+              updateProjectDueDate(projectId, duedate, e.target);
+            }
+          });
+
+          renderProjectsTable.addEventListener("change", (e) => {
+            if (e.target.classList.contains("budget-select")) {
+              const projectId = e.target.dataset.projectId;
+              const budget = parseFloat(e.target.value);
+              updateProjectBudget(projectId, budget, e.target);
+            }
+          });
+        });
+    </script>
+  </body>
+</html>

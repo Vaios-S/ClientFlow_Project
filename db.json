@@ -1,0 +1,813 @@
+{
+  "clients": [
+    {
+      "id": "1",
+      "companyName": "Aegean Softworks",
+      "companyDescription": "Software development company focused on web applications and enterprise solutions.",
+      "contactPerson": "Nikos Papadopoulos",
+      "contactRole": "Operations Manager",
+      "email": "contact@aegeansoftworks.com",
+      "phone": "+30 210 555 1001",
+      "website": "https://aegeansoftworks.com",
+      "industry": "Software Development",
+      "status": "Active",
+      "address": "120 Kifisias Avenue",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.9838,
+        "lng": 23.7275
+      },
+      "vatNumber": "EL094567891"
+    },
+    {
+      "id": "2",
+      "companyName": "Blue Harbor Logistics",
+      "companyDescription": "Logistics and supply chain management services across Europe.",
+      "contactPerson": "Eleni Konstantinou",
+      "contactRole": "Supply Chain Director",
+      "email": "info@blueharborlogistics.com",
+      "phone": "+30 2310 440 212",
+      "website": "https://blueharborlogistics.com",
+      "industry": "Logistics",
+      "status": "Active",
+      "address": "48 26th October Street",
+      "city": "Thessaloniki",
+      "country": "Greece",
+      "geo": {
+        "lat": 40.6401,
+        "lng": 22.9444
+      },
+      "vatNumber": "EL103456782"
+    },
+    {
+      "id": "3",
+      "companyName": "GreenLeaf Foods",
+      "companyDescription": "Organic food distribution for retail and wholesale markets.",
+      "contactPerson": "Maria Antoniou",
+      "contactRole": "Commercial Manager",
+      "email": "sales@greenleaffoods.com",
+      "phone": "+30 210 667 8812",
+      "website": "https://greenleaffoods.com",
+      "industry": "Food & Beverage",
+      "status": "Active",
+      "address": "210 Acharnon Street",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 38.0021,
+        "lng": 23.7446
+      },
+      "vatNumber": "EL114589632"
+    },
+    {
+      "id": "4",
+      "companyName": "Atlas Build Group",
+      "companyDescription": "Construction company specializing in commercial and residential projects.",
+      "contactPerson": "Giannis Lemonis",
+      "contactRole": "Project Coordinator",
+      "email": "info@atlasbuildgroup.com",
+      "phone": "+30 2610 221 900",
+      "website": "https://atlasbuildgroup.com",
+      "industry": "Construction",
+      "status": "Active",
+      "address": "85 Korinthou Street",
+      "city": "Patras",
+      "country": "Greece",
+      "geo": {
+        "lat": 38.2466,
+        "lng": 21.7346
+      },
+      "vatNumber": "EL125663478"
+    },
+    {
+      "id": "5",
+      "companyName": "MediCore Solutions",
+      "companyDescription": "Healthcare technology solutions for private clinics and hospitals.",
+      "contactPerson": "Anastasia Markou",
+      "contactRole": "Business Development Lead",
+      "email": "contact@medicoresolutions.com",
+      "phone": "+30 210 889 7711",
+      "website": "https://medicoresolutions.com",
+      "industry": "HealthTech",
+      "status": "Active",
+      "address": "304 Mesogeion Avenue",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 38.0012,
+        "lng": 23.7935
+      },
+      "vatNumber": "EL136774521"
+    },
+    {
+      "id": "6",
+      "companyName": "Nova Retail Partners",
+      "companyDescription": "Retail consulting services focused on omnichannel strategies.",
+      "contactPerson": "Petros Ioannidis",
+      "contactRole": "Client Success Manager",
+      "email": "info@novaretailpartners.com",
+      "phone": "+30 210 411 0080",
+      "website": "https://novaretailpartners.com",
+      "industry": "Retail Consulting",
+      "status": "Active",
+      "address": "14 Tzamadou Street",
+      "city": "Piraeus",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.942,
+        "lng": 23.6465
+      },
+      "vatNumber": "EL147852369"
+    },
+    {
+      "id": "7",
+      "companyName": "Solaris Energy Systems",
+      "companyDescription": "Renewable energy solutions for residential and industrial clients.",
+      "contactPerson": "Dimitra Stavrou",
+      "contactRole": "Sales Director",
+      "email": "info@solarisenergy.com",
+      "phone": "+30 2410 555 433",
+      "website": "https://solarisenergy.com",
+      "industry": "Energy",
+      "status": "Paused",
+      "address": "33 Iroon Polytechniou Street",
+      "city": "Larisa",
+      "country": "Greece",
+      "geo": {
+        "lat": 39.639,
+        "lng": 22.4191
+      },
+      "vatNumber": "EL158741236"
+    },
+    {
+      "id": "8",
+      "companyName": "UrbanNest Properties",
+      "companyDescription": "Real estate management and short-term rental services.",
+      "contactPerson": "Christos Vasileiou",
+      "contactRole": "Managing Partner",
+      "email": "info@urbannestproperties.com",
+      "phone": "+30 2810 778 451",
+      "website": "https://urbannestproperties.com",
+      "industry": "Real Estate",
+      "status": "Paused",
+      "address": "18 Dikaiosynis Street",
+      "city": "Heraklion",
+      "country": "Greece",
+      "geo": {
+        "lat": 35.3387,
+        "lng": 25.1442
+      },
+      "vatNumber": "EL169258347"
+    },
+    {
+      "id": "9",
+      "companyName": "PixelForge Studio",
+      "companyDescription": "Creative agency offering branding and digital design services.",
+      "contactPerson": "Sofia Dimitriou",
+      "contactRole": "Account Manager",
+      "email": "hello@pixelforge.com",
+      "phone": "+30 210 300 4402",
+      "website": "https://pixelforge.com",
+      "industry": "Creative Agency",
+      "status": "Paused",
+      "address": "72 Solonos Street",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.9802,
+        "lng": 23.7351
+      },
+      "vatNumber": "EL174563289"
+    },
+    {
+      "id": "10",
+      "companyName": "Oceanic Travel Hub",
+      "companyDescription": "Travel agency providing vacation packages and concierge services.",
+      "contactPerson": "Victoria Rapti",
+      "contactRole": "Operations Lead",
+      "email": "info@oceanictravelhub.com",
+      "phone": "+30 2241 055 920",
+      "website": "https://oceanictravelhub.com",
+      "industry": "Travel",
+      "status": "Paused",
+      "address": "9 Akti Miaouli",
+      "city": "Rhodes",
+      "country": "Greece",
+      "geo": {
+        "lat": 36.4349,
+        "lng": 28.2176
+      },
+      "vatNumber": "EL182736455"
+    },
+    {
+      "id": "11",
+      "companyName": "Helix Finance Advisory",
+      "companyDescription": "Financial consulting and strategic planning services.",
+      "contactPerson": "George Nikolaou",
+      "contactRole": "Senior Consultant",
+      "email": "info@helixfinance.com",
+      "phone": "+30 210 777 2200",
+      "website": "https://helixfinance.com",
+      "industry": "Finance",
+      "status": "Paused",
+      "address": "55 Panepistimiou Street",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.979,
+        "lng": 23.732
+      },
+      "vatNumber": "EL193847562"
+    },
+    {
+      "id": "12",
+      "companyName": "TechNova Systems",
+      "companyDescription": "IT infrastructure and cloud solutions provider.",
+      "contactPerson": "Alex Karras",
+      "contactRole": "IT Director",
+      "email": "support@technova.com",
+      "phone": "+30 2310 888 444",
+      "website": "https://technova.com",
+      "industry": "IT Services",
+      "status": "Paused",
+      "address": "101 Egnatia Street",
+      "city": "Thessaloniki",
+      "country": "Greece",
+      "geo": {
+        "lat": 40.6405,
+        "lng": 22.9448
+      },
+      "vatNumber": "EL204958673"
+    },
+    {
+      "id": "13",
+      "companyName": "FreshMart Distribution",
+      "companyDescription": "Wholesale distributor of fresh produce.",
+      "contactPerson": "Katerina Louka",
+      "contactRole": "Procurement Manager",
+      "email": "contact@freshmart.com",
+      "phone": "+30 210 555 8877",
+      "website": "https://freshmart.com",
+      "industry": "Wholesale",
+      "status": "Active",
+      "address": "22 Pireos Street",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.9785,
+        "lng": 23.715
+      },
+      "vatNumber": "EL215069784"
+    },
+    {
+      "id": "14",
+      "companyName": "Skyline Architects",
+      "companyDescription": "Architecture and urban planning firm.",
+      "contactPerson": "Dimitris Karalis",
+      "contactRole": "Lead Architect",
+      "email": "info@skylinearch.com",
+      "phone": "+30 210 333 1122",
+      "website": "https://skylinearch.com",
+      "industry": "Architecture",
+      "status": "Active",
+      "address": "8 Ermou Street",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.976,
+        "lng": 23.726
+      },
+      "vatNumber": "EL226170895"
+    },
+    {
+      "id": "15",
+      "companyName": "EcoSmart Solutions",
+      "companyDescription": "Environmental consulting and sustainability services.",
+      "contactPerson": "Eleni Pavlidou",
+      "contactRole": "Sustainability Consultant",
+      "email": "hello@ecosmart.com",
+      "phone": "+30 2310 123 456",
+      "website": "https://ecosmart.com",
+      "industry": "Environmental",
+      "status": "Active",
+      "address": "15 Tsimiski Street",
+      "city": "Thessaloniki",
+      "country": "Greece",
+      "geo": {
+        "lat": 40.632,
+        "lng": 22.944
+      },
+      "vatNumber": "EL237281906"
+    },
+    {
+      "id": "16",
+      "companyName": "NextGen Marketing",
+      "companyDescription": "Digital marketing agency specializing in performance campaigns.",
+      "contactPerson": "Chris Anton",
+      "contactRole": "Marketing Director",
+      "email": "contact@nextgenmarketing.com",
+      "phone": "+30 210 444 9988",
+      "website": "https://nextgenmarketing.com",
+      "industry": "Marketing",
+      "status": "Active",
+      "address": "66 Syngrou Avenue",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.968,
+        "lng": 23.728
+      },
+      "vatNumber": "EL248392017"
+    },
+    {
+      "id": "17",
+      "companyName": "Prime Security Services",
+      "companyDescription": "Corporate security and surveillance solutions.",
+      "contactPerson": "Antonis Georgiou",
+      "contactRole": "Security Manager",
+      "email": "info@primesecurity.com",
+      "phone": "+30 210 222 3344",
+      "website": "https://primesecurity.com",
+      "industry": "Security",
+      "status": "Active",
+      "address": "90 Vouliagmenis Avenue",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.956,
+        "lng": 23.744
+      },
+      "vatNumber": "EL259403128"
+    },
+    {
+      "id": "18",
+      "companyName": "EduPath Learning",
+      "companyDescription": "Online education platform and training services.",
+      "contactPerson": "Natalia Petrou",
+      "contactRole": "Program Manager",
+      "email": "support@edupath.com",
+      "phone": "+30 210 777 8888",
+      "website": "https://edupath.com",
+      "industry": "Education",
+      "status": "Paused",
+      "address": "12 Ippokratous Street",
+      "city": "Athens",
+      "country": "Greece",
+      "geo": {
+        "lat": 37.985,
+        "lng": 23.735
+      },
+      "vatNumber": "EL260514239"
+    },
+    {
+      "id": "19",
+      "companyName": "AutoFleet Services",
+      "companyDescription": "Fleet management and vehicle leasing services.",
+      "contactPerson": "Manolis Kapsis",
+      "contactRole": "Fleet Manager",
+      "email": "info@autofleet.com",
+      "phone": "+30 2810 444 222",
+      "website": "https://autofleet.com",
+      "industry": "Automotive",
+      "status": "Archived",
+      "address": "45 Knossos Avenue",
+      "city": "Heraklion",
+      "country": "Greece",
+      "geo": {
+        "lat": 35.338,
+        "lng": 25.13
+      },
+      "vatNumber": "EL271625340"
+    },
+    {
+      "id": "20",
+      "companyName": "CloudBridge Hosting",
+      "companyDescription": "Cloud hosting and DevOps infrastructure services.",
+      "contactPerson": "Stavros Lykos",
+      "contactRole": "DevOps Lead",
+      "email": "support@cloudbridge.com",
+      "phone": "+30 2310 555 999",
+      "website": "https://cloudbridge.com",
+      "industry": "Cloud Services",
+      "status": "Archived",
+      "address": "77 Monastiriou Street",
+      "city": "Thessaloniki",
+      "country": "Greece",
+      "geo": {
+        "lat": 40.655,
+        "lng": 22.93
+      },
+      "vatNumber": "EL282736451"
+    }
+  ],
+  "projects": [
+    {
+      "clientId": "1",
+      "projectName": "Website Redesign",
+      "clientName": "Aegean Softworks",
+      "teamMembers": "Nikos Papadopoulos",
+      "email": "nikos.papadopoulos@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
+      "status": "Completed",
+      "priority": "Low",
+      "dueDate": "2026-05-10",
+      "budget": "100.00",
+      "id": "ooSlAuBsaR8"
+    },
+    {
+      "clientId": "2",
+      "projectName": "CRM Dashboard Development",
+      "clientName": "Blue Harbor Logistics",
+      "teamMembers": "Maria Konstantinou",
+      "email": "maria.konstantinou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
+      "status": "Completed",
+      "priority": "Medium",
+      "dueDate": "2026-04-26",
+      "budget": "100.00",
+      "id": "WGWERXOqgn0"
+    },
+    {
+      "clientId": "3",
+      "projectName": "E-commerce Platform Setup",
+      "clientName": "GreenLeaf Foods",
+      "teamMembers": "Giorgos Alexiou",
+      "email": "giorgos.alexiou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+      "status": "Completed",
+      "priority": "Low",
+      "dueDate": "2026-05-03",
+      "budget": "1000.00",
+      "id": "LDN8v3TacFg"
+    },
+    {
+      "clientId": "4",
+      "projectName": "Mobile App UI Revamp",
+      "clientName": "Atlas Build Group",
+      "teamMembers": "Eleni Stavrou",
+      "email": "eleni.stavrou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
+      "status": "Blocked",
+      "priority": "High",
+      "dueDate": "2026-05-10",
+      "budget": "1000.00",
+      "id": "-0q2xHOS_YM"
+    },
+    {
+      "clientId": "6",
+      "projectName": "Internal Admin Panel",
+      "clientName": "Nova Retail Partners",
+      "teamMembers": "Dimitris Karalis",
+      "email": "dimitris.karalis@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/54.jpg",
+      "status": "Completed",
+      "priority": "High",
+      "dueDate": "2026-05-03",
+      "budget": "100.00",
+      "id": "EzCiiskrHaw"
+    },
+    {
+      "clientId": "6",
+      "projectName": "Marketing Landing Page",
+      "clientName": "Nova Retail Partners",
+      "teamMembers": "Giorgos Alexiou",
+      "email": "giorgos.alexiou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+      "status": "Blocked",
+      "priority": "Medium",
+      "dueDate": "2026-04-26",
+      "budget": "1000.00",
+      "id": "lcYMd9jukTc"
+    },
+    {
+      "clientId": "2",
+      "projectName": "Customer Portal Development",
+      "clientName": "Blue Harbor Logistics",
+      "teamMembers": "Nikos Papadopoulos",
+      "email": "nikos.papadopoulos@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
+      "status": "Review",
+      "priority": "Low",
+      "dueDate": "2026-05-10",
+      "budget": "1000.00",
+      "id": "GL22Kvna0BE"
+    },
+    {
+      "clientId": "8",
+      "projectName": "SEO Optimization Project",
+      "clientName": "UrbanNest Properties",
+      "teamMembers": "Antonis Rizos",
+      "email": "antonis.rizos@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
+      "status": "Planning",
+      "priority": "Low",
+      "dueDate": "2026-04-26",
+      "budget": "100.00",
+      "id": "_AUDzsWUfyM"
+    },
+    {
+      "clientId": "7",
+      "projectName": "Brand Identity Redesign",
+      "clientName": "Solaris Energy Systems",
+      "teamMembers": "Maria Konstantinou",
+      "email": "maria.konstantinou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
+      "status": "Planning",
+      "priority": "Medium",
+      "dueDate": "2026-04-26",
+      "budget": "100.00",
+      "id": "1M3Lbl7-9xI"
+    },
+    {
+      "clientId": "9",
+      "projectName": "Social Media Campaign System",
+      "clientName": "PixelForge Studio",
+      "teamMembers": "Giorgos Alexiou",
+      "email": "giorgos.alexiou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+      "status": "Planning",
+      "priority": "High",
+      "dueDate": "2026-04-26",
+      "budget": "1000.00",
+      "id": "oR364F2i9To"
+    },
+    {
+      "clientId": "20",
+      "projectName": "Inventory Management System",
+      "clientName": "CloudBridge Hosting",
+      "teamMembers": "Eleni Stavrou",
+      "email": "eleni.stavrou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
+      "status": "In Progress",
+      "priority": "Low",
+      "dueDate": "2026-04-26",
+      "budget": "100.00",
+      "id": "tsOJ_SPBswg"
+    },
+    {
+      "clientId": "19",
+      "projectName": "Booking System Development",
+      "clientName": "AutoFleet Services",
+      "teamMembers": "Dimitris Karalis",
+      "email": "dimitris.karalis@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/54.jpg",
+      "status": "Blocked",
+      "priority": "High",
+      "dueDate": "2026-05-10",
+      "budget": "1000.00",
+      "id": "NIeIxcgUrnE"
+    },
+    {
+      "clientId": "18",
+      "projectName": "Analytics Dashboard",
+      "clientName": "EduPath Learning",
+      "teamMembers": "Sofia Karagianni",
+      "email": "sofia.karagianni@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
+      "status": "Review",
+      "priority": "Low",
+      "dueDate": "2026-04-26",
+      "budget": "1000.00",
+      "id": "pVqGLGR6j_Q"
+    },
+    {
+      "clientId": "17",
+      "projectName": "API Integration Project",
+      "clientName": "Prime Security Services",
+      "teamMembers": "Antonis Rizos",
+      "email": "antonis.rizos@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
+      "status": "Review",
+      "priority": "Medium",
+      "dueDate": "2026-05-03",
+      "budget": "100.00",
+      "id": "h2eL46oJLPU"
+    },
+    {
+      "clientId": "19",
+      "projectName": "Payment Gateway Integration",
+      "clientName": "AutoFleet Services",
+      "teamMembers": "Natalia Petrou",
+      "email": "natalia.petrou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
+      "status": "Blocked",
+      "priority": "High",
+      "dueDate": "2026-05-10",
+      "budget": "1000.00",
+      "id": "8FoD_0fjDFk"
+    },
+    {
+      "clientId": "15",
+      "projectName": "Performance Optimization",
+      "clientName": "EcoSmart Solutions",
+      "teamMembers": "Natalia Petrou",
+      "email": "natalia.petrou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
+      "status": "Blocked",
+      "priority": "High",
+      "dueDate": "2026-04-22",
+      "budget": "1000.00",
+      "id": "RlkmxpGKuIY"
+    },
+    {
+      "clientId": "8",
+      "projectName": "Security Audit & Fixes",
+      "clientName": "UrbanNest Properties",
+      "teamMembers": "Natalia Petrou",
+      "email": "natalia.petrou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
+      "status": "Completed",
+      "priority": "Medium",
+      "dueDate": "2026-04-26",
+      "budget": "1000.00",
+      "id": "dFHlN6-FGY0"
+    },
+    {
+      "clientId": "5",
+      "projectName": "Data Migration Project",
+      "clientName": "MediCore Solutions",
+      "teamMembers": "Sofia Karagianni",
+      "email": "sofia.karagianni@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
+      "status": "Completed",
+      "priority": "Low",
+      "dueDate": "2026-04-23",
+      "budget": "1000.00",
+      "id": "ipzQCg2Xha4"
+    },
+    {
+      "clientId": "13",
+      "projectName": "Email Automation System",
+      "clientName": "FreshMart Distribution",
+      "teamMembers": "Sofia Karagianni",
+      "email": "sofia.karagianni@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
+      "status": "Completed",
+      "priority": "High",
+      "dueDate": "2026-04-25",
+      "budget": "1000.00",
+      "id": "yNIZAldw-3k"
+    },
+    {
+      "clientId": "3",
+      "projectName": "test",
+      "clientName": "GreenLeaf Foods",
+      "teamMembers": "Nikos Papadopoulos",
+      "email": "nikos.papadopoulos@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
+      "status": "In Progress",
+      "priority": "Medium",
+      "dueDate": "2026-05-03",
+      "budget": "12000.00",
+      "id": "dwmKKnMOPfM"
+    }
+  ],
+  "teamMembers": [
+    {
+      "id": "1",
+      "fullName": "Nikos Papadopoulos",
+      "email": "nikos.papadopoulos@company.com",
+      "phone": "+30 694 111 2233",
+      "role": "Frontend Developer",
+      "department": "Engineering",
+      "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
+      "status": "active",
+      "location": "Athens, Greece",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React"
+      ],
+      "joinDate": "2023-02-14"
+    },
+    {
+      "id": "2",
+      "fullName": "Maria Konstantinou",
+      "email": "maria.konstantinou@company.com",
+      "phone": "+30 694 222 3344",
+      "role": "UI/UX Designer",
+      "department": "Design",
+      "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
+      "status": "active",
+      "location": "Thessaloniki, Greece",
+      "skills": [
+        "Figma",
+        "Wireframing",
+        "Prototyping",
+        "Design Systems"
+      ],
+      "joinDate": "2022-09-01"
+    },
+    {
+      "id": "3",
+      "fullName": "Giorgos Alexiou",
+      "email": "giorgos.alexiou@company.com",
+      "phone": "+30 694 333 4455",
+      "role": "Backend Developer",
+      "department": "Engineering",
+      "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+      "status": "active",
+      "location": "Patras, Greece",
+      "skills": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "REST APIs"
+      ],
+      "joinDate": "2021-06-20"
+    },
+    {
+      "id": "4",
+      "fullName": "Eleni Stavrou",
+      "email": "eleni.stavrou@company.com",
+      "phone": "+30 694 444 5566",
+      "role": "Project Manager",
+      "department": "Operations",
+      "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
+      "status": "active",
+      "location": "Athens, Greece",
+      "skills": [
+        "Agile",
+        "Scrum",
+        "Planning",
+        "Team Coordination"
+      ],
+      "joinDate": "2020-11-10"
+    },
+    {
+      "id": "5",
+      "fullName": "Dimitris Karalis",
+      "email": "dimitris.karalis@company.com",
+      "phone": "+30 694 555 6677",
+      "role": "QA Engineer",
+      "department": "Quality Assurance",
+      "avatar": "https://randomuser.me/api/portraits/men/54.jpg",
+      "status": "active",
+      "location": "Heraklion, Greece",
+      "skills": [
+        "Manual Testing",
+        "Automation",
+        "Cypress",
+        "Test Cases"
+      ],
+      "joinDate": "2024-01-08"
+    },
+    {
+      "id": "6",
+      "fullName": "Sofia Karagianni",
+      "email": "sofia.karagianni@company.com",
+      "phone": "+30 694 666 7788",
+      "role": "Marketing Specialist",
+      "department": "Marketing",
+      "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
+      "status": "on leave",
+      "location": "Larisa, Greece",
+      "skills": [
+        "SEO",
+        "Content Marketing",
+        "Social Media",
+        "Campaigns"
+      ],
+      "joinDate": "2023-05-17"
+    },
+    {
+      "id": "7",
+      "fullName": "Antonis Rizos",
+      "email": "antonis.rizos@company.com",
+      "phone": "+30 694 777 8899",
+      "role": "DevOps Engineer",
+      "department": "Infrastructure",
+      "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
+      "status": "active",
+      "location": "Athens, Greece",
+      "skills": [
+        "Docker",
+        "CI/CD",
+        "AWS",
+        "Linux"
+      ],
+      "joinDate": "2022-03-29"
+    },
+    {
+      "id": "8",
+      "fullName": "Natalia Petrou",
+      "email": "natalia.petrou@company.com",
+      "phone": "+30 694 888 9900",
+      "role": "HR Manager",
+      "department": "Human Resources",
+      "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
+      "status": "active",
+      "location": "Athens, Greece",
+      "skills": [
+        "Recruiting",
+        "Employee Relations",
+        "Onboarding",
+        "HR Policies"
+      ],
+      "joinDate": "2021-10-05"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

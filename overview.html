@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overview - ClientFlow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="logo">
+            <div class="logo__mark">CF</div>
+            <div>
+              <h1 class="logo__title">ClientFlow</h1>
+              <p class="logo__subtitle">Project Dashboard</p>
+            </div>
+          </div>
+
+          <nav class="sidebar__nav">
+            <a class="nav-item nav-item--active" href="overview.html"
+              >Overview</a
+            >
+            <a class="nav-item" href="projects.html">Projects</a>
+            <a class="nav-item" href="clients.html">Clients</a>
+            <a class="nav-item" href="reports.html">Reports</a>
+            <a class="nav-item" href="settings.html">Settings</a>
+          </nav>
+        </div>
+
+        <div>
+          <div class="workspace-card">
+            <p class="workspace-card__label">Workspace</p>
+            <h3 class="workspace-card__title">Studio Alpha</h3>
+          </div>
+
+          <div class="user-card">
+            <div class="avatar">VS</div>
+            <div>
+              <p class="user-card__name">Vaios S.</p>
+              <p class="user-card__role">Project Manager</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="page-eyebrow">Dashboard</p>
+            <h2 class="page-title">Overview</h2>
+          </div>
+
+          <div class="topbar__actions">
+            <button class="primary-btn">New Project</button>
+          </div>
+        </header>
+
+        <section class="grid-4">
+          <article class="card">
+            <p class="card__label">Active Projects</p>
+            <h3 class="card__value" id="totalProjects">24</h3>
+            <p class="card__meta">+3 this week</p>
+          </article>
+
+          <article class="card" style="background-color: #ef8a8a">
+            <p class="card__label" style="color: #751010">Blocked</p>
+            <h3 class="card__value" id="totalBlocked">5</h3>
+            <p class="card__meta" style="color: #751010">Needs attention</p>
+          </article>
+
+          <article class="card">
+            <p class="card__label">Completed This Month</p>
+            <h3 class="card__value" id="totalCompleted">11</h3>
+            <p class="card__meta">On target</p>
+          </article>
+
+          <article class="card">
+            <p class="card__label">Total Budget</p>
+            <h3 class="card__value" id="totalBudget">€84,500</h3>
+            <p class="card__meta">Across all active accounts</p>
+          </article>
+        </section>
+
+        <section class="grid-2">
+          <article class="panel">
+            <div class="panel__header">
+              <h3>Projects Blocked</h3>
+            </div>
+
+            <div class="list" id="blockedlist"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <h3>Recent Activity</h3>
+            </div>
+
+            <div class="list">
+              <div class="list-item">
+                <p class="list-item__title">
+                  Maria changed status to In Progress
+                </p>
+                <p class="list-item__meta">10 minutes ago</p>
+              </div>
+
+              <div class="list-item">
+                <p class="list-item__title">
+                  Nikos updated due date for CRM Migration
+                </p>
+                <p class="list-item__meta">1 hour ago</p>
+              </div>
+
+              <div class="list-item">
+                <p class="list-item__title">Anna created Landing Page Sprint</p>
+                <p class="list-item__meta">Today</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <header class="topbar">
+          <div>
+            <p class="page-eyebrow">Analytics</p>
+            <h2 class="page-title">Reports</h2>
+          </div>
+
+          <div class="topbar__actions">
+            <button class="secondary-btn">Export CSV</button>
+          </div>
+        </header>
+
+        <section class="grid-3">
+          <article class="card">
+            <p class="card__label">Completion Rate</p>
+            <h3 class="card__value">82%</h3>
+            <p class="card__meta">Last 30 days</p>
+          </article>
+
+          <article class="card">
+            <p class="card__label">Average Delivery Delay</p>
+            <h3 class="card__value">3.2 days</h3>
+            <p class="card__meta">Across active projects</p>
+          </article>
+
+          <article class="card">
+            <p class="card__label">Budget Health</p>
+            <h3 class="card__value">91%</h3>
+            <p class="card__meta">Projects within target</p>
+          </article>
+        </section>
+
+        <section class="grid-2">
+          <article class="panel">
+            <div class="panel__header">
+              <h3>Status Breakdown</h3>
+            </div>
+            <div class="placeholder-box">
+              <canvas id="myChart"></canvas>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <h3>Budget Overview</h3>
+            </div>
+            <div class="placeholder-box">
+              <div>
+                <strong>Chart area placeholder</strong>
+                <p>Ιδανικό για revenue / budget / burn visualization.</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <h3>Performance Summary</h3>
+          </div>
+
+          <div class="list">
+            <div class="list-item">
+              <p class="list-item__title">Most delayed account: Bright Labs</p>
+              <p class="list-item__meta">
+                Average delay 6 days across 2 projects
+              </p>
+            </div>
+
+            <div class="list-item">
+              <p class="list-item__title">Best performing owner: Maria K.</p>
+              <p class="list-item__meta">
+                Highest on-time delivery rate this month
+              </p>
+            </div>
+
+            <div class="list-item">
+              <p class="list-item__title">Highest budget account: Acme Inc.</p>
+              <p class="list-item__meta">
+                €28,000 allocated across active work
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const ctx = document.getElementById("myChart");
+      const totalProjects = document.getElementById("totalProjects");
+      const totalBlocked = document.getElementById("totalBlocked");
+      const totalCompleted = document.getElementById("totalCompleted");
+      const totalBudget = document.getElementById("totalBudget");
+      const blockedList = document.getElementById("blockedlist");
+
+      function updateStats(projects) {
+        let totalBudgetCount = 0;
+        const numOfTotalProjects = (totalProjects.textContent =
+          projects.length);
+
+        const blockedCount = projects.filter(
+          (project) => project.status === "Blocked",
+        ).length;
+        totalBlocked.textContent = blockedCount;
+
+        const completedCount = projects.filter(
+          (project) => project.status === "Completed",
+        ).length;
+        totalCompleted.textContent = completedCount;
+
+        projects.forEach((project) => {
+          totalBudgetCount += parseFloat(project.budget);
+        });
+        totalBudget.textContent = `${totalBudgetCount.toLocaleString("el-GR", {
+          style: "currency",
+          currency: "EUR",
+        })}`;
+      }
+
+      function renderBlockedProjects(projects) {
+        blockedList.innerHTML = "";
+
+        const blockedProjects = projects.filter(
+          (project) => project.status === "Blocked",
+        );
+
+        const blockedProjectsSorted = blockedProjects.sort(
+          (a, b) => new Date(a.dueDate) - new Date(b.dueDate),
+        );
+
+        blockedProjectsSorted.forEach((project) => {
+          const dueDate = new Date(project.dueDate);
+          const today = new Date();
+
+          const diffMs = dueDate - today;
+          const daysRemaining = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+          const listItem = document.createElement("div");
+          listItem.classList.add("list-item");
+
+          listItem.innerHTML = `
+             <p class="list-item__title">${project.projectName}</p>
+             <p class="list-item__meta">${project.clientName} · Due in ${daysRemaining} days</p>
+      `;
+
+          blockedList.append(listItem);
+        });
+      }
+
+      function renderChart(projects) {
+        const plannigCount = projects.filter(
+          (project) => project.status === "Planning",
+        ).length;
+        const inProgressCount = projects.filter(
+          (project) => project.status === "In Progress",
+        ).length;
+        const reviewCount = projects.filter(
+          (project) => project.status === "Review",
+        ).length;
+        const blockedCount = projects.filter(
+          (project) => project.status === "Blocked",
+        ).length;
+        const completedCount = projects.filter(
+          (project) => project.status === "Completed",
+        ).length;
+
+        const data = {
+          labels: ["Planning", "In Progress", "Review", "Blocked", "Completed"],
+          datasets: [
+            {
+              label: "",
+              data: [
+                plannigCount,
+                inProgressCount,
+                reviewCount,
+                blockedCount,
+                completedCount,
+              ],
+              borderColor: [
+                "rgb(198, 193, 122)",
+                "rgb(143, 182, 193)",
+                "rgb(182, 163, 214)",
+                "rgb(227, 168, 160)",
+                "rgb(169, 209, 142)",
+              ],
+              borderWidth: 2,
+              borderRadius: 14,
+              backgroundColor: [
+                "rgba(198, 193, 122, 0.7)",
+                "rgba(143, 182, 193, 0.7)",
+                "rgba(182, 163, 214, 0.7)",
+                "rgba(227, 168, 160, 0.7)",
+                "rgba(169, 209, 142, 0.7)",
+              ],
+            },
+          ],
+        };
+
+        new Chart(ctx, {
+          type: "bar",
+          data: data,
+          options: {
+            plugins: {
+              legend: { display: false },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  color: "#8f958f",
+                },
+                grid: {
+                  color: "rgba(17, 24, 39, 0.05)",
+                },
+              },
+              x: {
+                ticks: {
+                  color: "#6f746f",
+                },
+                grid: {
+                  display: false,
+                },
+              },
+            },
+          },
+        });
+      }
+
+      Promise.all([
+        fetch("http://localhost:3000/clients"),
+        fetch("http://localhost:3000/projects"),
+        fetch("http://localhost:3000/teamMembers"),
+      ])
+        .then(([clients, projects, teamMembers]) => {
+          return Promise.all([
+            clients.json(),
+            projects.json(),
+            teamMembers.json(),
+          ]);
+        })
+        .then(([clients, projects, teamMembers]) => {
+          updateStats(projects);
+          renderBlockedProjects(projects);
+          renderChart(projects);
+        });
+    </script>
+  </body>
+</html>

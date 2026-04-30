@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports - ClientFlow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="logo">
+            <div class="logo__mark">CF</div>
+            <div>
+              <h1 class="logo__title">ClientFlow</h1>
+              <p class="logo__subtitle">Project Dashboard</p>
+            </div>
+          </div>
+
+          <nav class="sidebar__nav">
+            <a class="nav-item" href="overview.html">Overview</a>
+            <a class="nav-item" href="projects.html">Projects</a>
+            <a class="nav-item" href="clients.html">Clients</a>
+            <a class="nav-item nav-item--active" href="reports.html">Reports</a>
+            <a class="nav-item" href="settings.html">Settings</a>
+          </nav>
+        </div>
+
+        <div>
+          <div class="workspace-card">
+            <p class="workspace-card__label">Workspace</p>
+            <h3 class="workspace-card__title">Studio Alpha</h3>
+          </div>
+
+          <div class="user-card">
+            <div class="avatar">VS</div>
+            <div>
+              <p class="user-card__name">Vaios S.</p>
+              <p class="user-card__role">Project Manager</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="page-eyebrow">Analytics</p>
+            <h2 class="page-title">Reports</h2>
+          </div>
+
+          <div class="topbar__actions">
+            <button class="secondary-btn">Export CSV</button>
+          </div>
+        </header>
+
+        <section class="grid-3">
+          <article class="card">
+            <p class="card__label">Completion Rate</p>
+            <h3 class="card__value">82%</h3>
+            <p class="card__meta">Last 30 days</p>
+          </article>
+
+          <article class="card">
+            <p class="card__label">Average Delivery Delay</p>
+            <h3 class="card__value">3.2 days</h3>
+            <p class="card__meta">Across active projects</p>
+          </article>
+
+          <article class="card">
+            <p class="card__label">Budget Health</p>
+            <h3 class="card__value">91%</h3>
+            <p class="card__meta">Projects within target</p>
+          </article>
+        </section>
+
+        <section class="grid-2">
+          <article class="panel">
+            <div class="panel__header">
+              <h3>Status Breakdown</h3>
+            </div>
+            <div class="placeholder-box">
+              <div>
+                <strong>Chart area placeholder</strong>
+                <p>Εδώ αργότερα μπορείς να βάλεις chart με JS.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <h3>Budget Overview</h3>
+            </div>
+            <div class="placeholder-box">
+              <div>
+                <strong>Chart area placeholder</strong>
+                <p>Ιδανικό για revenue / budget / burn visualization.</p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel__header">
+            <h3>Performance Summary</h3>
+          </div>
+
+          <div class="list">
+            <div class="list-item">
+              <p class="list-item__title">Most delayed account: Bright Labs</p>
+              <p class="list-item__meta">
+                Average delay 6 days across 2 projects
+              </p>
+            </div>
+
+            <div class="list-item">
+              <p class="list-item__title">Best performing owner: Maria K.</p>
+              <p class="list-item__meta">
+                Highest on-time delivery rate this month
+              </p>
+            </div>
+
+            <div class="list-item">
+              <p class="list-item__title">Highest budget account: Acme Inc.</p>
+              <p class="list-item__meta">
+                €28,000 allocated across active work
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

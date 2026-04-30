@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings - ClientFlow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="logo">
+            <div class="logo__mark">CF</div>
+            <div>
+              <h1 class="logo__title">ClientFlow</h1>
+              <p class="logo__subtitle">Project Dashboard</p>
+            </div>
+          </div>
+
+          <nav class="sidebar__nav">
+            <a class="nav-item" href="overview.html">Overview</a>
+            <a class="nav-item" href="projects.html">Projects</a>
+            <a class="nav-item" href="clients.html">Clients</a>
+            <a class="nav-item" href="reports.html">Reports</a>
+            <a class="nav-item nav-item--active" href="settings.html"
+              >Settings</a
+            >
+          </nav>
+        </div>
+
+        <div>
+          <div class="workspace-card">
+            <p class="workspace-card__label">Workspace</p>
+            <h3 class="workspace-card__title">Studio Alpha</h3>
+          </div>
+
+          <div class="user-card">
+            <div class="avatar">VS</div>
+            <div>
+              <p class="user-card__name">Vaios S.</p>
+              <p class="user-card__role">Project Manager</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="page-eyebrow">Workspace</p>
+            <h2 class="page-title">Settings</h2>
+          </div>
+
+          <div class="topbar__actions">
+            <button class="primary-btn">Save Changes</button>
+          </div>
+        </header>
+
+        <section class="panel">
+          <div class="panel__header">
+            <div>
+              <h3>Workspace Settings</h3>
+              <p class="panel__description">
+                Manage statuses, notifications and dashboard preferences.
+              </p>
+            </div>
+          </div>
+
+          <div class="settings-list">
+            <div class="setting-row">
+              <div class="setting-row__text">
+                <h4>Email Notifications</h4>
+                <p>Receive updates when project status changes.</p>
+              </div>
+              <button class="secondary-btn">Enabled</button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-row__text">
+                <h4>Default Project Status</h4>
+                <p>Set the default status for newly created projects.</p>
+              </div>
+              <select style="max-width: 220px">
+                <option>Planning</option>
+                <option>In Progress</option>
+                <option>Review</option>
+              </select>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-row__text">
+                <h4>Currency</h4>
+                <p>Select the default currency used in budgets and reports.</p>
+              </div>
+              <select style="max-width: 220px">
+                <option>EUR (€)</option>
+                <option>USD ($)</option>
+                <option>GBP (£)</option>
+              </select>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-row__text">
+                <h4>Compact Table Mode</h4>
+                <p>Reduce row height for denser data display.</p>
+              </div>
+              <button class="secondary-btn">Disabled</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
