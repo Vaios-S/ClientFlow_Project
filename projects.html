@@ -670,31 +670,26 @@
           renderClientOptions(clients);
 
           selectedStatus.addEventListener("change", () => {
-            const fileteredProjects = getFilteredProjects(projects);
-            fetchProjects(fileteredProjects);
-            renderInfo(clients, fileteredProjects, teamMembers);
+            const filteredProjects = getFilteredProjects(projects);
+            renderInfo(clients, filteredProjects, teamMembers);
           });
           selectedTeamMembers.addEventListener("change", () => {
-            const fileteredProjects = getFilteredProjects(projects);
-            fetchProjects(fileteredProjects);
-            renderInfo(clients, fileteredProjects, teamMembers);
+            const filteredProjects = getFilteredProjects(projects);
+            renderInfo(clients, filteredProjects, teamMembers);
           });
           selectedPriority.addEventListener("change", () => {
-            const fileteredProjects = getFilteredProjects(projects);
-            fetchProjects(fileteredProjects);
-            renderInfo(clients, fileteredProjects, teamMembers);
+            const filteredProjects = getFilteredProjects(projects);
+            renderInfo(clients, filteredProjects, teamMembers);
           });
 
           selectedClient.addEventListener("change", () => {
-            const fileteredProjects = getFilteredProjects(projects);
-            fetchProjects(fileteredProjects);
-            renderInfo(clients, fileteredProjects, teamMembers);
+            const filteredProjects = getFilteredProjects(projects);
+            renderInfo(clients, filteredProjects, teamMembers);
           });
 
           searchProject.addEventListener("input", () => {
-            const fileteredProjects = getFilteredProjects(projects);
-            fetchProjects(fileteredProjects);
-            renderInfo(clients, fileteredProjects, teamMembers);
+            const filteredProjects = getFilteredProjects(projects);
+            renderInfo(clients, filteredProjects, teamMembers);
           });
 
           renderProjectsTable.addEventListener("change", (e) => {
