@@ -648,19 +648,6 @@
       "dueDate": "2026-04-25",
       "budget": "1000.00",
       "id": "yNIZAldw-3k"
-    },
-    {
-      "clientId": "3",
-      "projectName": "test",
-      "clientName": "GreenLeaf Foods",
-      "teamMembers": "Nikos Papadopoulos",
-      "email": "nikos.papadopoulos@company.com",
-      "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
-      "status": "In Progress",
-      "priority": "Medium",
-      "dueDate": "2026-05-03",
-      "budget": "12000.00",
-      "id": "dwmKKnMOPfM"
     }
   ],
   "teamMembers": [
@@ -674,12 +661,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
       "status": "active",
       "location": "Athens, Greece",
-      "skills": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React"
-      ],
+      "skills": ["HTML", "CSS", "JavaScript", "React"],
       "joinDate": "2023-02-14"
     },
     {
@@ -692,12 +674,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
       "status": "active",
       "location": "Thessaloniki, Greece",
-      "skills": [
-        "Figma",
-        "Wireframing",
-        "Prototyping",
-        "Design Systems"
-      ],
+      "skills": ["Figma", "Wireframing", "Prototyping", "Design Systems"],
       "joinDate": "2022-09-01"
     },
     {
@@ -710,12 +687,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
       "status": "active",
       "location": "Patras, Greece",
-      "skills": [
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "REST APIs"
-      ],
+      "skills": ["Node.js", "Express", "MongoDB", "REST APIs"],
       "joinDate": "2021-06-20"
     },
     {
@@ -728,12 +700,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
       "status": "active",
       "location": "Athens, Greece",
-      "skills": [
-        "Agile",
-        "Scrum",
-        "Planning",
-        "Team Coordination"
-      ],
+      "skills": ["Agile", "Scrum", "Planning", "Team Coordination"],
       "joinDate": "2020-11-10"
     },
     {
@@ -746,12 +713,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/54.jpg",
       "status": "active",
       "location": "Heraklion, Greece",
-      "skills": [
-        "Manual Testing",
-        "Automation",
-        "Cypress",
-        "Test Cases"
-      ],
+      "skills": ["Manual Testing", "Automation", "Cypress", "Test Cases"],
       "joinDate": "2024-01-08"
     },
     {
@@ -764,12 +726,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
       "status": "on leave",
       "location": "Larisa, Greece",
-      "skills": [
-        "SEO",
-        "Content Marketing",
-        "Social Media",
-        "Campaigns"
-      ],
+      "skills": ["SEO", "Content Marketing", "Social Media", "Campaigns"],
       "joinDate": "2023-05-17"
     },
     {
@@ -782,12 +739,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
       "status": "active",
       "location": "Athens, Greece",
-      "skills": [
-        "Docker",
-        "CI/CD",
-        "AWS",
-        "Linux"
-      ],
+      "skills": ["Docker", "CI/CD", "AWS", "Linux"],
       "joinDate": "2022-03-29"
     },
     {

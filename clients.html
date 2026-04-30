@@ -249,7 +249,6 @@
       const closeClientModalButton =
         document.getElementById("closeClientModal");
       const selectedStatus = document.getElementById("selectedStatus");
-      const createClientButton = document.getElementById("createClient");
       const searchClients = document.getElementById("searchClients");
       const selectedClient = document.getElementById("selectedClient");
       const clearBtn = document.getElementById("clearBtn");
@@ -475,33 +474,6 @@
         });
       }
 
-      // function sortedByName(clients) {
-      //   const originalClients = [...clients];
-
-      //   const sortedClientsAZ = [...clients].sort((a, b) =>
-      //     a.companyName.localeCompare(b.companyName),
-      //   );
-
-      //   const sortedClientsZA = [...clients].sort((a, b) =>
-      //     b.companyName.localeCompare(a.companyName),
-      //   );
-      //   if (sortState > 2) {
-      //     sortState = 0;
-      //   }
-      //   if (sortState === 0) {
-      //     renderClients(originalClients);
-      //   }
-
-      //   if (sortState === 1) {
-      //     renderClients(sortedClientsAZ);
-      //   }
-
-      //   if (sortState === 2) {
-      //     renderClients(sortedClientsZA);
-      //   }
-      //   console.log(sortState);
-      // }
-
       function refreshUI() {
         updateStats(clients);
 
@@ -553,7 +525,7 @@
           });
 
           clearBtn.addEventListener("click", () => {
-            searchClients.value = "All Clients";
+            searchClients.value = "";
             selectedIndustry.value = "All Industries";
             selectedStatus.value = "All";
             searchClients.value = "";
