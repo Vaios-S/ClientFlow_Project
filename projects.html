@@ -213,7 +213,19 @@
       );
       const selectedPriority = document.getElementById("selectedPriority");
       const selectedClient = document.getElementById("selectedClient");
-
+      //
+      //
+      //
+      //
+      //
+      let clients = [];
+      let projects = [];
+      let teamMembers = [];
+      //
+      //
+      //
+      //
+      //
       // Fetch clients and populate the company name dropdown
       function fetchClients() {
         fetch("http://localhost:3000/clients")
@@ -387,11 +399,12 @@
             method: "DELETE",
           })
             .then((response) => {
-              if (response.ok) {
-                alert("Project deleted successfully.");
-              } else {
-                alert("Failed to delete project.");
+              if (!response.ok) {
+                throw new Error("Failed to delete project.");
               }
+              projects = projects.filter((project) => project.id !== projectId);
+              renderInfo(clients, projects, teamMembers);
+              alert("Project deleted successfully.");
             })
             .catch((error) => {
               console.error("Error deleting project:", error);
@@ -632,14 +645,18 @@
         fetch("http://localhost:3000/projects"),
         fetch("http://localhost:3000/teamMembers"),
       ])
-        .then(([clients, projects, teamMembers]) => {
+        .then(([clientsData, projectsData, teamMembersData]) => {
           return Promise.all([
-            clients.json(),
-            projects.json(),
-            teamMembers.json(),
+            clientsData.json(),
+            projectsData.json(),
+            teamMembersData.json(),
           ]);
         })
-        .then(([clients, projects, teamMembers]) => {
+        .then(([clientsData, projectsData, teamMembersData]) => {
+          clients = clientsData;
+          projects = projectsData;
+          teamMembers = teamMembersData;
+
           fetchClients(clients);
 
           fetchTeam(teamMembers);
