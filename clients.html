@@ -327,11 +327,12 @@
             method: "DELETE",
           })
             .then((response) => {
-              if (response.ok) {
-                alert("Client deleted successfully.");
-              } else {
-                alert("Failed to delete client.");
+              if (!response.ok) {
+                throw new Error("Failed to delete client.");
               }
+              clients = clients.filter((client) => client.id !== clientId);
+              refreshUI();
+              alert("Client deleted successfully.");
             })
             .catch((error) => {
               console.log("Error:", error);
