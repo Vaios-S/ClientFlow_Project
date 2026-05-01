@@ -8,42 +8,7 @@
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar">
-        <div>
-          <div class="logo">
-            <div class="logo__mark">CF</div>
-            <div>
-              <h1 class="logo__title">ClientFlow</h1>
-              <p class="logo__subtitle">Project Dashboard</p>
-            </div>
-          </div>
-
-          <nav class="sidebar__nav">
-            <a class="nav-item nav-item--active" href="overview.html"
-              >Overview</a
-            >
-            <a class="nav-item" href="projects.html">Projects</a>
-            <a class="nav-item" href="clients.html">Clients</a>
-            <a class="nav-item" href="reports.html">Reports</a>
-            <a class="nav-item" href="settings.html">Settings</a>
-          </nav>
-        </div>
-
-        <div>
-          <div class="workspace-card">
-            <p class="workspace-card__label">Workspace</p>
-            <h3 class="workspace-card__title">Studio Alpha</h3>
-          </div>
-
-          <div class="user-card">
-            <div class="avatar">VS</div>
-            <div>
-              <p class="user-card__name">Vaios S.</p>
-              <p class="user-card__role">Project Manager</p>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <aside class="sidebar" id="sidebar-container"></aside>
 
       <main class="main-content">
         <header class="topbar">
@@ -215,6 +180,26 @@
       const totalBudget = document.getElementById("totalBudget");
       const blockedList = document.getElementById("blockedlist");
 
+      function fetchSideBar() {
+        fetch("sidebar.html")
+          .then((response) => response.text())
+          .then((sidebarHtml) => {
+            document.getElementById("sidebar-container").innerHTML =
+              sidebarHtml;
+
+            const currentPage = window.location.pathname;
+            const links = document.querySelectorAll(".nav-item");
+
+            links.forEach((link) => {
+              link.classList.remove("nav-item--active");
+
+              if (currentPage.includes(link.getAttribute("href"))) {
+                link.classList.add("nav-item--active");
+              }
+            });
+          });
+      }
+
       function updateStats(projects) {
         let totalBudgetCount = 0;
         const numOfTotalProjects = (totalProjects.textContent =
@@ -348,6 +333,8 @@
           },
         });
       }
+
+      fetchSideBar();
 
       Promise.all([
         fetch("http://localhost:3000/clients"),
