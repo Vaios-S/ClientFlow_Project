@@ -172,7 +172,7 @@
               <select id="selectedTeamMembers"></select>
 
               <select id="selectedStatus">
-                <option>All Statuses</option>
+                <option value="All Statuses">All Statuses</option>
                 <option value="Planning">Planning</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Review">Review</option>
@@ -668,6 +668,15 @@
           renderTeamMembersOptions(teamMembers);
 
           renderClientOptions(clients);
+
+          clearBtn.addEventListener("click", () => {
+            searchProject.value = "";
+            selectedStatus.value = "All Statuses";
+            selectedTeamMembers.value = "All Team Members";
+            selectedPriority.value = "All Priorities";
+            selectedClient.value = "All Clients";
+            renderInfo(clients, projects, teamMembers);
+          });
 
           selectedStatus.addEventListener("change", () => {
             const filteredProjects = getFilteredProjects(projects);
