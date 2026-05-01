@@ -613,6 +613,11 @@
         });
       }
 
+      function applyFilters() {
+        const filteredProjects = getFilteredProjects(projects);
+        renderInfo(clients, filteredProjects, teamMembers);
+      }
+
       // Initial setup
 
       fetchSideBar();
@@ -665,28 +670,15 @@
             renderInfo(clients, projects, teamMembers);
           });
 
-          selectedStatus.addEventListener("change", () => {
-            const filteredProjects = getFilteredProjects(projects);
-            renderInfo(clients, filteredProjects, teamMembers);
-          });
-          selectedTeamMembers.addEventListener("change", () => {
-            const filteredProjects = getFilteredProjects(projects);
-            renderInfo(clients, filteredProjects, teamMembers);
-          });
-          selectedPriority.addEventListener("change", () => {
-            const filteredProjects = getFilteredProjects(projects);
-            renderInfo(clients, filteredProjects, teamMembers);
-          });
+          selectedStatus.addEventListener("change", applyFilters);
 
-          selectedClient.addEventListener("change", () => {
-            const filteredProjects = getFilteredProjects(projects);
-            renderInfo(clients, filteredProjects, teamMembers);
-          });
+          selectedTeamMembers.addEventListener("change", applyFilters);
 
-          searchProject.addEventListener("input", () => {
-            const filteredProjects = getFilteredProjects(projects);
-            renderInfo(clients, filteredProjects, teamMembers);
-          });
+          selectedPriority.addEventListener("change", applyFilters);
+
+          selectedClient.addEventListener("change", applyFilters);
+
+          searchProject.addEventListener("input", applyFilters);
 
           renderProjectsTable.addEventListener("change", (e) => {
             if (e.target.classList.contains("status-select")) {
