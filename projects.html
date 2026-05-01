@@ -8,42 +8,7 @@
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar">
-        <div>
-          <div class="logo">
-            <div class="logo__mark">CF</div>
-            <div>
-              <h1 class="logo__title">ClientFlow</h1>
-              <p class="logo__subtitle">Project Dashboard</p>
-            </div>
-          </div>
-
-          <nav class="sidebar__nav">
-            <a class="nav-item" href="overview.html">Overview</a>
-            <a class="nav-item nav-item--active" href="projects.html"
-              >Projects</a
-            >
-            <a class="nav-item" href="clients.html">Clients</a>
-            <a class="nav-item" href="reports.html">Reports</a>
-            <a class="nav-item" href="settings.html">Settings</a>
-          </nav>
-        </div>
-
-        <div class="detailsName">
-          <div class="workspace-card">
-            <p class="workspace-card__label">Workspace</p>
-            <h3 class="workspace-card__title">Studio Alpha</h3>
-          </div>
-
-          <div class="user-card">
-            <div class="avatar">VS</div>
-            <div>
-              <p class="user-card__name">Vaios S.</p>
-              <p class="user-card__role">Project Manager</p>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <aside class="sidebar" id="sidebar-container"></aside>
 
       <main class="main-content">
         <header class="topbar">
@@ -57,7 +22,7 @@
           </div>
         </header>
 
-        <section class="hidden" id="addClientModal">
+        <section class="hidden" id="addProjectModal">
           <div class="addClient-card">
             <form id="projectForm">
               <h3>Add New Project</h3>
@@ -135,7 +100,7 @@
                 <button
                   type="button"
                   class="secondary-btn"
-                  id="closeClientModal"
+                  id="closeProjectModal"
                 >
                   Cancel
                 </button>
@@ -200,8 +165,8 @@
 
     <script>
       const addProjectBtn = document.getElementById("addProject");
-      const addClientModal = document.getElementById("addClientModal");
-      const closeClientModalBtn = document.getElementById("closeClientModal");
+      const addProjectModal = document.getElementById("addProjectModal");
+      const closeProjectModal = document.getElementById("closeProjectModal");
       const companyNameSelect = document.getElementById("companyName");
       const teamMembersSelect = document.getElementById("teamMembers");
       const renderProjectsTable = document.getElementById("renderProjects");
@@ -255,6 +220,26 @@
               option.value = member.fullName;
               option.innerHTML = `${member.fullName} / ${member.department}`;
               teamMembersSelect.appendChild(option);
+            });
+          });
+      }
+
+      function fetchSideBar() {
+        fetch("sidebar.html")
+          .then((response) => response.text())
+          .then((sidebarHtml) => {
+            document.getElementById("sidebar-container").innerHTML =
+              sidebarHtml;
+
+            const currentPage = window.location.pathname;
+            const links = document.querySelectorAll(".nav-item");
+
+            links.forEach((link) => {
+              link.classList.remove("nav-item--active");
+
+              if (currentPage.includes(link.getAttribute("href"))) {
+                link.classList.add("nav-item--active");
+              }
             });
           });
       }
@@ -330,7 +315,7 @@
             .then((createdProject) => {
               projects.push(createdProject);
               projectForm.reset();
-              addClientModal.classList.remove("addClient-modal");
+              addProjectModal.classList.remove("addClient-modal");
               renderInfo(clients, projects, teamMembers);
               alert("Project added successfully.");
             })
@@ -630,13 +615,15 @@
 
       // Initial setup
 
+      fetchSideBar();
+
       // Open the modal when clicking the "Add Project" button
       addProjectBtn.addEventListener("click", () => {
-        addClientModal.classList.add("addClient-modal");
+        addProjectModal.classList.add("addClient-modal");
       });
       // Close the modal when clicking the cancel button
-      closeClientModalBtn.addEventListener("click", () => {
-        addClientModal.classList.remove("addClient-modal");
+      closeProjectModal.addEventListener("click", () => {
+        addProjectModal.classList.remove("addClient-modal");
       });
 
       // Fetch clients and projects data in parallel and initialize the app
