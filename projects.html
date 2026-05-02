@@ -417,6 +417,7 @@
             if (project) {
               project.status = updateProject.status;
             }
+            applyFilters();
           })
           .catch((error) => {
             console.log("Error:", error);
@@ -445,7 +446,7 @@
             if (project) {
               project.priority = updateProject.priority;
             }
-            fetchProjects(getFilteredProjects(projects));
+            applyFilters();
           })
           .catch((error) => {
             console.log("Error:", error);
@@ -474,7 +475,7 @@
             if (project) {
               project.dueDate = updateProject.dueDate;
             }
-            fetchProjects(getFilteredProjects(projects));
+            applyFilters();
           })
           .catch((error) => {
             console.log("Error:", error);
@@ -503,7 +504,7 @@
             if (project) {
               project.budget = updateProject.budget;
             }
-            fetchProjects(getFilteredProjects(projects));
+            applyFilters();
           })
           .catch((error) => {
             console.log("Error:", error);
@@ -707,7 +708,7 @@
           renderProjectsTable.addEventListener("change", (e) => {
             if (e.target.classList.contains("budget-select")) {
               const projectId = e.target.dataset.projectId;
-              const budget = parseFloat(e.target.value);
+              const budget = parseFloat(e.target.value).toFixed(2);
               updateProjectBudget(projectId, budget, e.target);
             }
           });
