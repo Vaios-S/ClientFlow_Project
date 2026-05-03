@@ -18,7 +18,9 @@
           </div>
 
           <div class="topbar__actions">
-            <button class="primary-btn" id="addProject">Add Project</button>
+            <button type="button" class="primary-btn" id="addProject">
+              Add Project
+            </button>
           </div>
         </header>
 
@@ -152,7 +154,9 @@
                 <option value="High">High</option>
               </select>
 
-              <button class="primary-btn btnflex" id="clearBtn">Clear</button>
+              <button type="button" class="primary-btn btnflex" id="clearBtn">
+                Clear
+              </button>
             </div>
           </div>
 
@@ -162,6 +166,24 @@
         </section>
       </main>
     </div>
+
+    <div id="confirmModal" class="hidden">
+      <div class="confirm-card">
+        <h3>Delete project?</h3>
+        <p>This action cannot be undone.</p>
+
+        <div class="confirm-actions">
+          <button type="button" class="secondary-btn" id="cancelDelete">
+            Cancel
+          </button>
+          <button type="button" class="danger-btn" id="confirmDelete">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
 
     <script>
       const addProjectBtn = document.getElementById("addProject");
@@ -178,6 +200,10 @@
       );
       const selectedPriority = document.getElementById("selectedPriority");
       const selectedClient = document.getElementById("selectedClient");
+      const toastContainer = document.getElementById("toastContainer");
+      const confirmModal = document.getElementById("confirmModal");
+      const cancelDelete = document.getElementById("cancelDelete");
+      const confirmDelete = document.getElementById("confirmDelete");
       //
       //
       //
@@ -186,6 +212,7 @@
       let clients = [];
       let projects = [];
       let teamMembers = [];
+      let projectIdToDelete = null;
       //
       //
       //
@@ -317,11 +344,11 @@
               projectForm.reset();
               addProjectModal.classList.remove("addClient-modal");
               renderInfo(clients, projects, teamMembers);
-              alert("Project added successfully.");
+              showToast("Project added successfully.", "success");
             })
             .catch((error) => {
               console.log("Error:", error);
-              alert("An error occurred while adding the project.");
+              showToast("An error occurred while adding the project.", "error");
             });
         });
       }
@@ -370,7 +397,7 @@
                             <input class="budget-select" type="number" value="${project.budget}" data-project-id="${project.id}"/>
                           </div></td>
                           <td>${project.role}</td>
-                          <td><button class="icon-btn" onclick="deleteProject('${project.id}')">🗑️</button></td>
+                          <td><button type="button" class="icon-btn" onclick="deleteProject('${project.id}')">🗑️</button></td>
                         `;
           tbody.appendChild(row);
         });
@@ -379,23 +406,9 @@
 
       // Delete a project
       function deleteProject(projectId) {
-        if (confirm("Are you sure you want to delete this project?")) {
-          fetch(`http://localhost:3000/projects/${projectId}`, {
-            method: "DELETE",
-          })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to delete project.");
-              }
-              projects = projects.filter((project) => project.id !== projectId);
-              renderInfo(clients, projects, teamMembers);
-              alert("Project deleted successfully.");
-            })
-            .catch((error) => {
-              console.error("Error deleting project:", error);
-              alert("An error occurred while deleting the project.");
-            });
-        }
+        projectIdToDelete = projectId;
+        confirmModal.classList.remove("hidden");
+        confirmModal.classList.add("confirm-modal");
       }
 
       function updateProjectStatus(projectId, status, selectElement) {
@@ -417,11 +430,15 @@
             if (project) {
               project.status = updateProject.status;
             }
+            showToast("Project Status updated.", "success");
             applyFilters();
           })
           .catch((error) => {
             console.log("Error:", error);
-            alert("Could not update project status. Please try again.");
+            showToast(
+              "Could not update project status. Please try again.",
+              "error",
+            );
             selectElement.value =
               selectElement.dataset.previousValue || selectElement.value;
           });
@@ -446,11 +463,15 @@
             if (project) {
               project.priority = updateProject.priority;
             }
+            showToast("Project Priority updated.", "success");
             applyFilters();
           })
           .catch((error) => {
             console.log("Error:", error);
-            alert("Could not update project priority. Please try again.");
+            showToast(
+              "Could not update project priority. Please try again.",
+              "error",
+            );
             selectElement.value =
               selectElement.dataset.previousValue || selectElement.value;
           });
@@ -475,11 +496,15 @@
             if (project) {
               project.dueDate = updateProject.dueDate;
             }
+            showToast("Project Due Date updated.", "success");
             applyFilters();
           })
           .catch((error) => {
             console.log("Error:", error);
-            alert("Could not update client dueDate. Please try again.");
+            showToast(
+              "Could not update client dueDate. Please try again.",
+              "error",
+            );
             selectElement.value =
               selectElement.dataset.previousValue || selectElement.value;
           });
@@ -504,11 +529,13 @@
             if (project) {
               project.budget = updateProject.budget;
             }
+            showToast("Project Budget updated.", "success");
             applyFilters();
           })
           .catch((error) => {
             console.log("Error:", error);
-            alert("Could not update client dueDate. Please try again.");
+            showToast("Could not update Budget. Please try again.", "error");
+
             selectElement.value =
               selectElement.dataset.previousValue || selectElement.value;
           });
@@ -619,6 +646,20 @@
         renderInfo(clients, filteredProjects, teamMembers);
       }
 
+      function showToast(msg, type) {
+        const toastType = document.createElement("div");
+        toastType.classList.add(`toast`, `toast--${type}`, `toast--show`);
+        toastType.innerHTML = `<div class="toast__title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>
+                            <div class="toast__message">${msg}</div>`;
+
+        toastContainer.appendChild(toastType);
+        setTimeout(() => {
+          toastType.classList.remove("toast--show");
+          toastType.classList.add("toast--hide");
+        }, 2000);
+        setTimeout(() => toastType.remove(), 2500);
+      }
+
       // Initial setup
 
       fetchSideBar();
@@ -630,6 +671,44 @@
       // Close the modal when clicking the cancel button
       closeProjectModal.addEventListener("click", () => {
         addProjectModal.classList.remove("addClient-modal");
+      });
+
+      cancelDelete.addEventListener("click", () => {
+        projectIdToDelete = null;
+
+        confirmModal.classList.add("hidden");
+        confirmModal.classList.remove("confirm-modal");
+      });
+
+      confirmDelete.addEventListener("click", () => {
+        if (!projectIdToDelete) return;
+
+        fetch(`http://localhost:3000/projects/${projectIdToDelete}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to delete project.");
+            }
+
+            projects = projects.filter(
+              (project) => project.id !== projectIdToDelete,
+            );
+
+            renderInfo(clients, projects, teamMembers);
+
+            showToast("Project deleted successfully.", "success");
+          })
+          .catch((error) => {
+            console.error("Error deleting project:", error);
+            showToast("Error deleting project.", "error");
+          })
+          .finally(() => {
+            projectIdToDelete = null;
+
+            confirmModal.classList.add("hidden");
+            confirmModal.classList.remove("confirm-modal");
+          });
       });
 
       // Fetch clients and projects data in parallel and initialize the app
