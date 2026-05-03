@@ -194,7 +194,7 @@
                       <span class="arrow down"></span>
                     </button>
                   </th>
-                  <th>Delete</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody id="tablebodyIn"></tbody>
@@ -203,6 +203,101 @@
         </section>
       </main>
     </div>
+
+    <section class="hidden" id="editClientModal">
+      <div class="addClient-card">
+        <form id="editClientForm">
+          <h3>Edit Client</h3>
+
+          <label for="editCompanyName">Company Name:</label>
+          <input type="text" id="editCompanyName" name="companyName" required />
+
+          <label for="editCompanyDescription">Company Description:</label>
+          <input
+            type="text"
+            id="editCompanyDescription"
+            name="companyDescription"
+            required
+          />
+
+          <label for="editContactPerson">Contact Person:</label>
+          <input
+            type="text"
+            id="editContactPerson"
+            name="contactPerson"
+            required
+          />
+
+          <label for="editContactRole">Contact Role:</label>
+          <input type="text" id="editContactRole" name="contactRole" required />
+
+          <label for="editEmail">Email:</label>
+          <input type="email" id="editEmail" name="email" required />
+
+          <label for="editPhone">Phone:</label>
+          <input type="tel" id="editPhone" name="phone" required />
+
+          <label for="editWebsite">Website:</label>
+          <input type="url" id="editWebsite" name="website" required />
+
+          <label for="editIndustry">Industry:</label>
+          <input type="text" id="editIndustry" name="industry" required />
+
+          <label for="status">Status:</label>
+          <div class="status-tags">
+            <input
+              type="radio"
+              name="editStatus"
+              id="editActive"
+              value="Active"
+            />
+            <label for="editActive">Active</label>
+
+            <input
+              type="radio"
+              name="editStatus"
+              id="editPaused"
+              value="Paused"
+            />
+            <label for="editPaused">Paused</label>
+
+            <input
+              type="radio"
+              name="editStatus"
+              id="editArchived"
+              value="Archived"
+            />
+            <label for="editArchived">Archived</label>
+          </div>
+
+          <label for="editAddress">Address:</label>
+          <input type="text" id="editAddress" name="address" required />
+
+          <label for="editCity">City:</label>
+          <input type="text" id="editCity" name="city" required />
+
+          <label for="editCountry">Country:</label>
+          <input type="text" id="editCountry" name="country" required />
+
+          <label for="editVatNumber">VAT Number:</label>
+          <input type="text" id="editVatNumber" name="vatNumber" required />
+
+          <div class="addClient-actions">
+            <button
+              type="button"
+              class="secondary-btn"
+              id="closeEditClientModal"
+            >
+              Cancel
+            </button>
+
+            <button type="submit" class="primary-btn" id="saveClientChanges">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
 
     <script>
       const tablebodyIn = document.getElementById("tablebodyIn");
@@ -220,9 +315,14 @@
       const selectedClient = document.getElementById("selectedClient");
       const clearBtn = document.getElementById("clearBtn");
       const sortByName = document.getElementById("sortByName");
+      const editClientModal = document.getElementById("editClientModal");
+      const closeEditClientModal = document.getElementById(
+        "closeEditClientModal",
+      );
       //
       //
       let clients = [];
+      let editedClientId = null;
       //
       //
       addClientButton.addEventListener("click", () => {
@@ -233,6 +333,10 @@
 
       closeClientModalButton.addEventListener("click", () => {
         addClientModal.classList.remove("addClient-modal");
+      });
+
+      closeEditClientModal.addEventListener("click", () => {
+        editClientModal.classList.remove("addClient-modal");
       });
 
       function fetchSideBar() {
@@ -365,22 +469,58 @@
         clients.forEach((client) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-                          <td style="font-weight: 500">${client.companyName}</td>
-                          <td><span class="contact-person">${client.contactPerson}</span> <br /> ${client.contactRole}</td>
-                          <td><span class="contact-person">${client.email}</span> <br /> ${client.phone}</td>
-                          <td>${client.industry}</td>
-                          <td>
-                            <select class="status-select  badge badge--${getStatusClass(client.status)} dropdown" data-client-id="${client.id}">
-                              <option class="badge badge--success" value="Active" ${client.status === "Active" ? "selected" : ""}>Active</option>
-                              <option class="badge badge--warning" value="Paused" ${client.status === "Paused" ? "selected" : ""}>Paused</option>
-                              <option class="badge badge--secondary" value="Archived" ${client.status === "Archived" ? "selected" : ""}>Archived</option>
-                            </select>
-                          </td>
-                          <td><button class="icon-btn" id="delete-btn" onclick="deleteClient('${client.id}')">🗑️</button></td>
+                                <td style="font-weight: 500">${client.companyName}</td>
+                                <td><span class="contact-person">${client.contactPerson}</span> <br /> ${client.contactRole}</td>
+                                <td><span class="contact-person">${client.email}</span> <br /> ${client.phone}</td>
+                                <td>${client.industry}</td>
+                                <td>
+                                  <select class="status-select  badge badge--${getStatusClass(client.status)} dropdown" data-client-id="${client.id}">
+                                    <option class="badge badge--success" value="Active" ${client.status === "Active" ? "selected" : ""}>Active</option>
+                                    <option class="badge badge--warning" value="Paused" ${client.status === "Paused" ? "selected" : ""}>Paused</option>
+                                    <option class="badge badge--secondary" value="Archived" ${client.status === "Archived" ? "selected" : ""}>Archived</option>
+                                  </select>
+                                </td>
+                                <td>
+                                  <button class="icon-btn"  onclick="editClients('${client.id}')">✏️</button>
+                                  <button class="icon-btn"  onclick="deleteClient('${client.id}')">🗑️</button></td>
 
                         `;
           tablebodyIn.appendChild(row);
         });
+      }
+
+      function editClients(clientId) {
+        editClientModal.classList.add("addClient-modal");
+        editedClientId = clientId;
+
+        fetch(`http://localhost:3000/clients/${clientId}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch client.");
+            }
+            return response.json();
+          })
+          .then((client) => {
+            document.getElementById("editCompanyName").value =
+              client.companyName;
+            document.getElementById("editCompanyDescription").value =
+              client.companyDescription;
+            document.getElementById("editContactPerson").value =
+              client.contactPerson;
+            document.getElementById("editContactRole").value =
+              client.contactRole;
+            document.getElementById("editEmail").value = client.email;
+            document.getElementById("editPhone").value = client.phone;
+            document.getElementById("editWebsite").value = client.website;
+            document.getElementById("editIndustry").value = client.industry;
+            document.querySelector(
+              `input[name="editStatus"][value="${client.status}"]`,
+            ).checked = true;
+            document.getElementById("editAddress").value = client.address;
+            document.getElementById("editCity").value = client.city;
+            document.getElementById("editCountry").value = client.country;
+            document.getElementById("editVatNumber").value = client.vatNumber;
+          });
       }
 
       function getFilteredClients(clients) {
@@ -416,6 +556,60 @@
           );
         }
         return filteredClients;
+      }
+
+      function submitEditedClients(clients) {
+        const editForm = document.getElementById("editClientForm");
+        editForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const editedClientData = {
+            companyName: document.getElementById("editCompanyName").value,
+            companyDescription: document.getElementById(
+              "editCompanyDescription",
+            ).value,
+            contactPerson: document.getElementById("editContactPerson").value,
+            contactRole: document.getElementById("editContactRole").value,
+            email: document.getElementById("editEmail").value,
+            phone: document.getElementById("editPhone").value,
+            website: document.getElementById("editWebsite").value,
+            industry: document.getElementById("editIndustry").value,
+            status: document.querySelector('input[name="editStatus"]:checked')
+              .value,
+            address: document.getElementById("editAddress").value,
+            city: document.getElementById("editCity").value,
+            country: document.getElementById("editCountry").value,
+            vatNumber: document.getElementById("editVatNumber").value,
+          };
+
+          fetch(`http://localhost:3000/clients/${editedClientId}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(editedClientData),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to update client.");
+              }
+              return response.json();
+            })
+            .then((editedClientData) => {
+              const client = clients.find((c) => c.id === editedClientId);
+              if (client) {
+                Object.assign(client, editedClientData);
+              }
+
+              editClientModal.classList.remove("addClient-modal");
+              refreshUI();
+
+              alert("Client updated successfully.");
+            })
+            .catch((error) => {
+              console.log("Error:", error);
+              alert("An error occurred while updating the client.");
+            });
+        });
       }
 
       function addClient(clients) {
@@ -488,6 +682,8 @@
           refreshUI();
 
           addClient(clients);
+
+          submitEditedClients(clients);
 
           sortByName.addEventListener("click", () => {
             sortState++;
