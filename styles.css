@@ -68,7 +68,7 @@ textarea {
 }
 
 .app-shell {
-  display: grid;
+  display: block;
   grid-template-columns: var(--sidebar-width) 1fr;
   min-height: 100vh;
 }
@@ -191,6 +191,8 @@ textarea {
 
 .main-content {
   padding: 28px;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
 }
 
 .topbar {
@@ -866,6 +868,7 @@ textarea {
 
   .main-content {
     padding: 20px;
+    margin-left: 0;
   }
 
   .topbar {
@@ -938,6 +941,7 @@ body {
 
 /* outer container */
 .app-shell {
+  display: block;
   max-width: 100vw;
   min-height: 100vh;
   background: var(--surface);
@@ -950,6 +954,12 @@ body {
   background: linear-gradient(180deg, #12151c 0%, #0b0d12 100%);
   color: #fff;
   border-right: 1px solid rgba(255, 255, 255, 0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .logo__mark {
@@ -977,6 +987,8 @@ body {
 /* main content */
 .main-content {
   background: var(--surface);
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
 }
 
 /* titles */
