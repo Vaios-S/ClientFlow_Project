@@ -301,6 +301,22 @@
 
     <div id="toastContainer" class="toast-container"></div>
 
+    <div id="confirmModal" class="hidden">
+      <div class="confirm-card">
+        <h3>Delete client?</h3>
+        <p>This action cannot be undone.</p>
+
+        <div class="confirm-actions">
+          <button type="button" class="secondary-btn" id="cancelDelete">
+            Cancel
+          </button>
+          <button type="button" class="danger-btn" id="confirmDelete">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
       const tablebodyIn = document.getElementById("tablebodyIn");
       const totalClients = document.getElementById("total_clients");
@@ -323,11 +339,15 @@
       );
 
       const toastContainer = document.getElementById("toastContainer");
+      const confirmModal = document.getElementById("confirmModal");
+      const cancelDelete = document.getElementById("cancelDelete");
+      const confirmDelete = document.getElementById("confirmDelete");
 
       //
       //
       let clients = [];
       let editedClientId = null;
+      let clientIdToDelete = null;
       //
       //
       addClientButton.addEventListener("click", () => {
@@ -342,6 +362,42 @@
 
       closeEditClientModal.addEventListener("click", () => {
         editClientModal.classList.remove("addClient-modal");
+      });
+
+      cancelDelete.addEventListener("click", () => {
+        clientIdToDelete = null;
+
+        confirmModal.classList.add("hidden");
+        confirmModal.classList.remove("confirm-modal");
+      });
+
+      confirmDelete.addEventListener("click", () => {
+        if (!clientIdToDelete) return;
+
+        fetch(`http://localhost:3000/clients/${clientIdToDelete}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to delete client.");
+            }
+            clients = clients.filter(
+              (client) => client.id !== clientIdToDelete,
+            );
+            refreshUI();
+
+            showToast("Client deleted successfully.", "success");
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+            showToast("An error occurred while deleting the client.", "error");
+          })
+          .finally(() => {
+            clientIdToDelete = null;
+
+            confirmModal.classList.add("hidden");
+            confirmModal.classList.remove("confirm-modal");
+          });
       });
 
       function fetchSideBar() {
@@ -418,27 +474,9 @@
       }
 
       function deleteClient(clientId) {
-        if (confirm("Are you sure you want to delete this client?")) {
-          fetch(`http://localhost:3000/clients/${clientId}`, {
-            method: "DELETE",
-          })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to delete client.");
-              }
-              clients = clients.filter((client) => client.id !== clientId);
-              refreshUI();
-
-              showToast("Client deleted successfully.", "success");
-            })
-            .catch((error) => {
-              console.log("Error:", error);
-              showToast(
-                "An error occurred while deleting the client.",
-                "error",
-              );
-            });
-        }
+        clientIdToDelete = clientId;
+        confirmModal.classList.remove("hidden");
+        confirmModal.classList.add("confirm-modal");
       }
 
       function updateClientStatus(clientId, status, selectElement) {
