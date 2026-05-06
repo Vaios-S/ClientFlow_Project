@@ -299,6 +299,8 @@
       </div>
     </section>
 
+    <div id="toastContainer" class="toast-container"></div>
+
     <script>
       const tablebodyIn = document.getElementById("tablebodyIn");
       const totalClients = document.getElementById("total_clients");
@@ -319,6 +321,9 @@
       const closeEditClientModal = document.getElementById(
         "closeEditClientModal",
       );
+
+      const toastContainer = document.getElementById("toastContainer");
+
       //
       //
       let clients = [];
@@ -423,11 +428,15 @@
               }
               clients = clients.filter((client) => client.id !== clientId);
               refreshUI();
-              alert("Client deleted successfully.");
+
+              showToast("Client deleted successfully.", "success");
             })
             .catch((error) => {
               console.log("Error:", error);
-              alert("An error occurred while deleting the client.");
+              showToast(
+                "An error occurred while deleting the client.",
+                "error",
+              );
             });
         }
       }
@@ -453,10 +462,14 @@
             }
             updateStats(clients);
             renderClients(getFilteredClients(clients));
+            showToast("Client Status updated.", "success");
           })
           .catch((error) => {
             console.log("Error:", error);
-            alert("Could not update client status. Please try again.");
+            showToast(
+              "Could not update client status. Please try again.",
+              "error",
+            );
             selectElement.value =
               selectElement.dataset.previousValue || selectElement.value;
           });
@@ -602,12 +615,14 @@
 
               editClientModal.classList.remove("addClient-modal");
               refreshUI();
-
-              alert("Client updated successfully.");
+              showToast("Client updated successfully.", "success");
             })
             .catch((error) => {
               console.log("Error:", error);
-              alert("An error occurred while updating the client.");
+              showToast(
+                "An error occurred while updating the client.",
+                "error",
+              );
             });
         });
       }
@@ -652,11 +667,11 @@
               clientForm.reset();
               addClientModal.classList.remove("addClient-modal");
               refreshUI();
-              alert("Client added successfully.");
+              showToast("Client added successfully.", "success");
             })
             .catch((error) => {
               console.log("Error:", error);
-              alert("An error occurred while adding the client.");
+              showToast("An error occurred while adding the client.", "error");
             });
         });
       }
@@ -669,6 +684,20 @@
         renderClientOptions(clients);
 
         renderClients(clients);
+      }
+
+      function showToast(msg, type) {
+        const toastType = document.createElement("div");
+        toastType.classList.add(`toast`, `toast--${type}`, `toast--show`);
+        toastType.innerHTML = `<div class="toast__title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>
+                            <div class="toast__message">${msg}</div>`;
+
+        toastContainer.appendChild(toastType);
+        setTimeout(() => {
+          toastType.classList.remove("toast--show");
+          toastType.classList.add("toast--hide");
+        }, 2000);
+        setTimeout(() => toastType.remove(), 2500);
       }
 
       fetchSideBar();
