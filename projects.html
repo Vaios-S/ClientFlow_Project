@@ -167,6 +167,109 @@
       </main>
     </div>
 
+    <section class="hidden" id="editProjectModal">
+      <div class="addClient-card">
+        <form id="editProjectForm">
+          <h3>Edit Project</h3>
+
+          <label for="editProjectName">Project Name:</label>
+          <input type="text" id="editProjectName" name="projectName" required />
+
+          <label for="editCompanyName">Company Name:</label>
+          <select id="editCompanyName" name="clientName" required></select>
+
+          <label for="editTeamMembers">Team Members:</label>
+          <select id="editTeamMembers" name="teamMembers" required></select>
+
+          <label for="editStatus">Status:</label>
+          <div class="status-tags">
+            <input
+              type="radio"
+              name="editStatus"
+              id="editPlanning"
+              value="Planning"
+              checked
+            />
+            <label for="editPlanning">Planning</label>
+            <input
+              type="radio"
+              name="editStatus"
+              id="editInProgress"
+              value="In Progress"
+            />
+            <label for="editInProgress">In Progress</label>
+            <input
+              type="radio"
+              name="editStatus"
+              id="editReview"
+              value="Review"
+            />
+            <label for="editReview">Review</label>
+            <input
+              type="radio"
+              name="editStatus"
+              id="editBlocked"
+              value="Blocked"
+            />
+            <label for="editBlocked">Blocked</label>
+            <input
+              type="radio"
+              name="editStatus"
+              id="editCompleted"
+              value="Completed"
+            />
+            <label for="editCompleted">Completed</label>
+          </div>
+
+          <label for="editPriority">Priority:</label>
+          <div class="status-tags">
+            <input
+              type="radio"
+              name="editPriority"
+              id="editLow"
+              value="Low"
+              checked
+            />
+            <label for="editLow">Low</label>
+            <input
+              type="radio"
+              name="editPriority"
+              id="editMedium"
+              value="Medium"
+            />
+            <label for="editMedium">Medium</label>
+            <input
+              type="radio"
+              name="editPriority"
+              id="editHigh"
+              value="High"
+            />
+            <label for="editHigh">High</label>
+          </div>
+
+          <label for="editDueDate">Due Date:</label>
+          <input type="date" id="editDueDate" name="dueDate" required />
+
+          <label for="editBudget">Budget:</label>
+          <input type="number" id="editBudget" name="budget" required />
+
+          <div class="addClient-actions">
+            <button
+              type="button"
+              class="secondary-btn"
+              id="closeEditProjectModal"
+            >
+              Cancel
+            </button>
+
+            <button type="submit" class="primary-btn" id="saveProjectChanges">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <div id="confirmModal" class="hidden">
       <div class="confirm-card">
         <h3>Delete project?</h3>
@@ -204,6 +307,10 @@
       const confirmModal = document.getElementById("confirmModal");
       const cancelDelete = document.getElementById("cancelDelete");
       const confirmDelete = document.getElementById("confirmDelete");
+      const editProjectModal = document.getElementById("editProjectModal");
+      const closeEditProjectModal = document.getElementById(
+        "closeEditProjectModal",
+      );
       //
       //
       //
@@ -213,6 +320,7 @@
       let projects = [];
       let teamMembers = [];
       let projectIdToDelete = null;
+      let editedProjectId = null;
       //
       //
       //
@@ -359,46 +467,47 @@
 
         const thred = document.createElement("thead");
         thred.innerHTML = `<tr>
-                          <th>Project Name</th>
-                          <th>Client</th>
-                          <th>Team Member</th>
-                          <th>Email</th>
-                          <th>Status</th>
-                          <th>Priority</th>
-                          <th>Due Date</th>
-                          <th>Budget</th>
-                          <th>Role</th>
-                          <th>Delete</th>
-                          </tr>`;
+                                      <th>Project Name</th>
+                                      <th>Client</th>
+                                      <th>Team Member</th>
+                                      <th>Email</th>
+                                      <th>Status</th>
+                                      <th>Priority</th>
+                                      <th>Due Date</th>
+                                      <th>Budget</th>
+                                      <th>Role</th>
+                                      <th>Delete</th>
+                                      </tr>`;
         renderProjectsTable.appendChild(thred);
         const tbody = document.createElement("tbody");
         projects.forEach((project) => {
           const row = document.createElement("tr");
           row.innerHTML = `<td><a class="table-link" href="#">${project.projectName}</a></td>
-                          <td>${project.clientName}</td>
-                          <td><div class="avatar-container"><img src="${project.avatar}" alt="Avatar" class="avatar avatar--small">${project.teamMembers}</div></td>
-                          <td>${project.email}</td>
-                          <td><select class="status-select dropdown badge badge--${getStatusClass(project.status)}" data-project-id="${project.id}">
-                            <option class="badge badge--planning" value="Planning" ${project.status === "Planning" ? "selected" : ""}>Planning</option>
-                            <option class="badge badge--inProgress" value="In Progress" ${project.status === "In Progress" ? "selected" : ""}>In Progress</option>
-                            <option class="badge badge--review" value="Review" ${project.status === "Review" ? "selected" : ""}>Review</option>
-                            <option class="badge badge--blocked" value="Blocked" ${project.status === "Blocked" ? "selected" : ""}>Blocked</option>
-                            <option class="badge badge--completed" value="Completed" ${project.status === "Completed" ? "selected" : ""}>Completed</option>
-                          </select></td>
-                          <td><select class="priority-select dropdown badge badge--${getPriorityClass(project.priority)}"  data-project-id="${project.id}">
-                            <option class="badge badge--high " value="High" ${project.priority === "High" ? "selected" : ""}>High</option>
-                            <option class="badge badge--medium " value="Medium" ${project.priority === "Medium" ? "selected" : ""}>Medium</option>
-                            <option class="badge badge--low " value="Low" ${project.priority === "Low" ? "selected" : ""}>Low</option>
-                          </select></td>
-                          <td><input class="duedate-select badge" type="date" value="${project.dueDate}" data-project-id="${project.id}"></td>
-                          <td>
-                            <div class=" budget-input">
-                            <span class="currency">€</span>
-                            <input class="budget-select" type="number" value="${project.budget}" data-project-id="${project.id}"/>
-                          </div></td>
-                          <td>${project.role}</td>
-                          <td><button type="button" class="icon-btn" onclick="deleteProject('${project.id}')">🗑️</button></td>
-                        `;
+                                      <td>${project.clientName}</td>
+                                      <td><div class="avatar-container"><img src="${project.avatar}" alt="Avatar" class="avatar avatar--small">${project.teamMembers}</div></td>
+                                      <td>${project.email}</td>
+                                      <td><select class="status-select dropdown badge badge--${getStatusClass(project.status)}" data-project-id="${project.id}">
+                                        <option class="badge badge--planning" value="Planning" ${project.status === "Planning" ? "selected" : ""}>Planning</option>
+                                        <option class="badge badge--inProgress" value="In Progress" ${project.status === "In Progress" ? "selected" : ""}>In Progress</option>
+                                        <option class="badge badge--review" value="Review" ${project.status === "Review" ? "selected" : ""}>Review</option>
+                                        <option class="badge badge--blocked" value="Blocked" ${project.status === "Blocked" ? "selected" : ""}>Blocked</option>
+                                        <option class="badge badge--completed" value="Completed" ${project.status === "Completed" ? "selected" : ""}>Completed</option>
+                                      </select></td>
+                                      <td><select class="priority-select dropdown badge badge--${getPriorityClass(project.priority)}"  data-project-id="${project.id}">
+                                        <option class="badge badge--high " value="High" ${project.priority === "High" ? "selected" : ""}>High</option>
+                                        <option class="badge badge--medium " value="Medium" ${project.priority === "Medium" ? "selected" : ""}>Medium</option>
+                                        <option class="badge badge--low " value="Low" ${project.priority === "Low" ? "selected" : ""}>Low</option>
+                                      </select></td>
+                                      <td><input class="duedate-select badge" type="date" value="${project.dueDate}" data-project-id="${project.id}"></td>
+                                      <td>
+                                        <div class=" budget-input">
+                                        <span class="currency">€</span>
+                                        <input class="budget-select" type="number" value="${project.budget}" data-project-id="${project.id}"/>
+                                      </div></td>
+                                      <td>${project.role}</td>
+                                      <td> <button class="icon-btn"  onclick="editProject('${project.id}')">✏️</button>
+                                          <button type="button" class="icon-btn" onclick="deleteProject('${project.id}')">🗑️</button></td>
+                                    `;
           tbody.appendChild(row);
         });
         renderProjectsTable.appendChild(tbody);
@@ -618,7 +727,7 @@
       // Render team members in the filter dropdown
       function renderTeamMembersOptions(teamMembers) {
         selectedTeamMembers.innerHTML = `<option value="All Team Members">All Team Members</option>
-      `;
+                  `;
 
         teamMembers.forEach((member) => {
           const option = document.createElement("option");
@@ -631,7 +740,7 @@
       // Render Clients in the filter dropdown
       function renderClientOptions(clients) {
         selectedClient.innerHTML = `<option value="All Clients">All Clients</option>
-      `;
+                  `;
 
         clients.forEach((client) => {
           const option = document.createElement("option");
@@ -650,7 +759,7 @@
         const toastType = document.createElement("div");
         toastType.classList.add(`toast`, `toast--${type}`, `toast--show`);
         toastType.innerHTML = `<div class="toast__title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>
-                            <div class="toast__message">${msg}</div>`;
+                                        <div class="toast__message">${msg}</div>`;
 
         toastContainer.appendChild(toastType);
         setTimeout(() => {
@@ -660,6 +769,142 @@
         setTimeout(() => toastType.remove(), 2500);
       }
 
+      function editProject(projectId) {
+        editProjectModal.classList.add("addClient-modal");
+        editedProjectId = projectId;
+
+        fetch("http://localhost:3000/clients")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("editCompanyName").innerHTML =
+              '<option value="Select a Company">Select a Company...</option>';
+
+            data.forEach((client) => {
+              const option = document.createElement("option");
+              option.value = client.id;
+              option.innerHTML = client.companyName;
+              document.getElementById("editCompanyName").appendChild(option);
+            });
+          });
+
+        fetch("http://localhost:3000/teamMembers")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("editTeamMembers").innerHTML =
+              '<option value="Select a Team Member">Select a Team Member...</option>';
+
+            data.forEach((member) => {
+              const option = document.createElement("option");
+              option.value = member.fullName;
+              option.innerHTML = `${member.fullName} / ${member.department}`;
+              document.getElementById("editTeamMembers").appendChild(option);
+            });
+          });
+
+        fetch(`http://localhost:3000/projects/${projectId}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch projects.");
+            }
+            return response.json();
+          })
+          .then((project) => {
+            document.getElementById("editProjectName").value =
+              project.projectName;
+            document.getElementById("editCompanyName").value = project.clientId;
+            document.getElementById("editTeamMembers").value =
+              project.teamMembers;
+            document.querySelector(
+              `input[name="editStatus"][value="${project.status}"]`,
+            ).checked = true;
+            document.querySelector(
+              `input[name="editPriority"][value="${project.priority}"]`,
+            ).checked = true;
+
+            document.getElementById("editDueDate").value = project.dueDate;
+
+            document.getElementById("editBudget").value = project.budget;
+          });
+      }
+
+      function submitEditedProjects(projects) {
+        const clientOptions = clients.map((client) => ({
+          id: client.id,
+          name: client.companyName,
+        }));
+        const teamMemberOptions = teamMembers.map((member) => ({
+          name: member.fullName,
+          department: member.department,
+          avatar: member.avatar,
+          email: member.email,
+        }));
+
+        const editForm = document.getElementById("editProjectForm");
+
+        editForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const selectedClientId =
+            document.getElementById("editCompanyName").value;
+          const selectedClient = clientOptions.find(
+            (client) => client.id === selectedClientId,
+          );
+
+          const editedProjectData = {
+            clientId: selectedClientId,
+            projectName: document.getElementById("editProjectName").value,
+            clientName: selectedClient?.name,
+            teamMembers: document.getElementById("editTeamMembers").value,
+            email: teamMemberOptions.find(
+              (m) =>
+                m.name === document.getElementById("editTeamMembers").value,
+            )?.email,
+            avatar: teamMemberOptions.find(
+              (m) =>
+                m.name === document.getElementById("editTeamMembers").value,
+            )?.avatar,
+            status: document.querySelector('input[name="editStatus"]:checked')
+              .value,
+            priority: document.querySelector(
+              'input[name="editPriority"]:checked',
+            ).value,
+            dueDate: document.getElementById("editDueDate").value,
+            budget: parseFloat(
+              document.getElementById("editBudget").value,
+            ).toFixed(2),
+          };
+
+          fetch(`http://localhost:3000/projects/${editedProjectId}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(editedProjectData),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to update project.");
+              }
+              return response.json();
+            })
+            .then((editedProjectData) => {
+              const project = projects.find((p) => p.id === editedProjectId);
+              if (project) {
+                Object.assign(project, editedProjectData);
+              }
+              editProjectModal.classList.remove("addClient-modal");
+              renderInfo(clients, projects, teamMembers);
+              showToast("Project updated successfully.", "success");
+            })
+            .catch((error) => {
+              console.log("Error:", error);
+              showToast(
+                "An error occurred while updating the project.",
+                "error",
+              );
+            });
+        });
+      }
       // Initial setup
 
       fetchSideBar();
@@ -711,6 +956,9 @@
           });
       });
 
+      closeEditProjectModal.addEventListener("click", () => {
+        editProjectModal.classList.remove("addClient-modal");
+      });
       // Fetch clients and projects data in parallel and initialize the app
       Promise.all([
         fetch("http://localhost:3000/clients"),
@@ -740,6 +988,8 @@
           renderTeamMembersOptions(teamMembers);
 
           renderClientOptions(clients);
+
+          submitEditedProjects(projects);
 
           clearBtn.addEventListener("click", () => {
             searchProject.value = "";
