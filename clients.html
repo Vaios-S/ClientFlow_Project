@@ -333,6 +333,7 @@
       const selectedClient = document.getElementById("selectedClient");
       const clearBtn = document.getElementById("clearBtn");
       const sortByName = document.getElementById("sortByName");
+      const sortByStatus = document.getElementById("sortByStatus");
       const editClientModal = document.getElementById("editClientModal");
       const closeEditClientModal = document.getElementById(
         "closeEditClientModal",
@@ -745,12 +746,38 @@
         .then((data) => {
           clients = data;
           let sortState = 0;
+          let sortStateStatus = 0;
 
           refreshUI();
 
           addClient(clients);
 
           submitEditedClients(clients);
+
+          sortByStatus.addEventListener("click", () => {
+            sortStateStatus++;
+            const originalClients = [...clients];
+            const sortedClientsAZ = [...clients].sort((a, b) =>
+              a.status.localeCompare(b.status),
+            );
+            const sortedClientsZA = [...clients].sort((a, b) =>
+              b.status.localeCompare(a.status),
+            );
+            if (sortStateStatus > 2) {
+              sortStateStatus = 0;
+            }
+            if (sortStateStatus === 0) {
+              renderClients(originalClients);
+            }
+
+            if (sortStateStatus === 1) {
+              renderClients(sortedClientsAZ);
+            }
+
+            if (sortStateStatus === 2) {
+              renderClients(sortedClientsZA);
+            }
+          });
 
           sortByName.addEventListener("click", () => {
             sortState++;
@@ -775,11 +802,6 @@
             if (sortState === 2) {
               renderClients(sortedClientsZA);
             }
-
-            console.log(sortState);
-            console.log(originalClients);
-            console.log(sortedClientsAZ);
-            console.log(sortedClientsZA);
           });
 
           clearBtn.addEventListener("click", () => {
