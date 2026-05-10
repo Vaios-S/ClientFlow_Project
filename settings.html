@@ -6,7 +6,7 @@
     <title>Settings - ClientFlow</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body data-theme="light">
+  <body data-theme="light" data-accent="lime">
     <div class="app-shell">
       <aside class="sidebar" id="sidebar-container"></aside>
 
@@ -15,10 +15,6 @@
           <div>
             <p class="page-eyebrow">Workspace</p>
             <h2 class="page-title">Settings</h2>
-          </div>
-
-          <div class="topbar__actions">
-            <button class="primary-btn">Save Changes</button>
           </div>
         </header>
 
@@ -73,10 +69,39 @@
 
             <div class="setting-row">
               <div class="setting-row__text">
-                <h4>Compact Table Mode</h4>
-                <p>Reduce row height for denser data display.</p>
+                <h4>Accent Color</h4>
+                <p>
+                  Choose the main highlight color used across buttons, focus
+                  states and active items.
+                </p>
               </div>
-              <button class="secondary-btn">Disabled</button>
+
+              <div class="accent-options" id="accentOptions">
+                <button
+                  type="button"
+                  class="accent-option accent-option--lime"
+                  data-accent="lime"
+                  aria-label="Lime accent"
+                ></button>
+                <button
+                  type="button"
+                  class="accent-option accent-option--blue"
+                  data-accent="blue"
+                  aria-label="Blue accent"
+                ></button>
+                <button
+                  type="button"
+                  class="accent-option accent-option--purple"
+                  data-accent="purple"
+                  aria-label="Purple accent"
+                ></button>
+                <button
+                  type="button"
+                  class="accent-option accent-option--rose"
+                  data-accent="rose"
+                  aria-label="Rose accent"
+                ></button>
+              </div>
             </div>
           </div>
         </section>
@@ -87,6 +112,8 @@
       const emailBtn = document.getElementById("emailBtn");
       const themeToggle = document.getElementById("themeToggle");
       const savedTheme = localStorage.getItem("theme");
+      const accentButtons = document.querySelectorAll(".accent-option");
+      const savedOption = localStorage.getItem("accent");
 
       let emailEnabled = true;
 
@@ -101,6 +128,12 @@
         }
       });
 
+      accentButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          localStorage.setItem("accent", button.dataset.accent);
+          document.body.dataset.accent = button.dataset.accent;
+        });
+      });
       emailBtn.addEventListener("click", () => {
         emailEnabled = !emailEnabled;
         emailBtn.textContent = emailEnabled ? "Enable" : "Disable";

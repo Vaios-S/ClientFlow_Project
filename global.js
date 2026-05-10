@@ -23,8 +23,9 @@ fetchSideBar();
 // Toggle Theme
 
 let theme = localStorage.getItem("theme");
-if (theme === "dark") {
-  document.body.dataset.theme = "dark";
-} else {
-  document.body.dataset.theme = "light";
-}
+document.body.dataset.theme = theme || "light";
+
+// Toggle Accent
+
+let accent = localStorage.getItem("accent");
+document.body.dataset.accent = accent || "lime";
