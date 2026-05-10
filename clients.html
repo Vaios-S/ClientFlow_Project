@@ -6,7 +6,7 @@
     <title>Clients - ClientFlow</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body data-theme="light">
     <div class="app-shell">
       <aside class="sidebar" id="sidebar-container"></aside>
 
@@ -317,6 +317,8 @@
       </div>
     </div>
 
+    <script src="./global.js"></script>
+
     <script>
       const tablebodyIn = document.getElementById("tablebodyIn");
       const totalClients = document.getElementById("total_clients");
@@ -400,26 +402,6 @@
             confirmModal.classList.remove("confirm-modal");
           });
       });
-
-      function fetchSideBar() {
-        fetch("sidebar.html")
-          .then((response) => response.text())
-          .then((sidebarHtml) => {
-            document.getElementById("sidebar-container").innerHTML =
-              sidebarHtml;
-
-            const currentPage = window.location.pathname;
-            const links = document.querySelectorAll(".nav-item");
-
-            links.forEach((link) => {
-              link.classList.remove("nav-item--active");
-
-              if (currentPage.includes(link.getAttribute("href"))) {
-                link.classList.add("nav-item--active");
-              }
-            });
-          });
-      }
 
       function updateStats(clients) {
         const numOfTotalClients = (totalClients.textContent = clients.length);
@@ -738,8 +720,6 @@
         }, 2000);
         setTimeout(() => toastType.remove(), 2500);
       }
-
-      fetchSideBar();
 
       fetch("http://localhost:3000/clients")
         .then((response) => response.json())

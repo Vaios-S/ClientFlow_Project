@@ -6,7 +6,7 @@
     <title>Overview - ClientFlow</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body data-theme="light">
     <div class="app-shell">
       <aside class="sidebar" id="sidebar-container"></aside>
 
@@ -171,7 +171,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="./global.js"></script>
     <script>
       const ctx = document.getElementById("myChart");
       const totalProjects = document.getElementById("totalProjects");
@@ -179,26 +179,6 @@
       const totalCompleted = document.getElementById("totalCompleted");
       const totalBudget = document.getElementById("totalBudget");
       const blockedList = document.getElementById("blockedlist");
-
-      function fetchSideBar() {
-        fetch("sidebar.html")
-          .then((response) => response.text())
-          .then((sidebarHtml) => {
-            document.getElementById("sidebar-container").innerHTML =
-              sidebarHtml;
-
-            const currentPage = window.location.pathname;
-            const links = document.querySelectorAll(".nav-item");
-
-            links.forEach((link) => {
-              link.classList.remove("nav-item--active");
-
-              if (currentPage.includes(link.getAttribute("href"))) {
-                link.classList.add("nav-item--active");
-              }
-            });
-          });
-      }
 
       function updateStats(projects) {
         let totalBudgetCount = 0;
@@ -333,8 +313,6 @@
           },
         });
       }
-
-      fetchSideBar();
 
       Promise.all([
         fetch("http://localhost:3000/clients"),

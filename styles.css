@@ -751,6 +751,54 @@ textarea {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
+#editPlanning:checked + label {
+  background: #ffffff;
+  color: #1e40af;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+#editInProgress:checked + label {
+  background: #ffffff;
+  color: #047857;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+#editReview:checked + label {
+  background: #ffffff;
+  color: #92400e;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+#editLow:checked + label {
+  background: #ffffff;
+  color: #16a34a;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+#editMedium:checked + label {
+  background: #ffffff;
+  color: #92400e;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+#editHigh:checked + label {
+  background: #ffffff;
+  color: #dc2626;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+#editBlocked:checked + label {
+  background: #ffffff;
+  color: #dc2626;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+#editCompleted:checked + label {
+  background: #ffffff;
+  color: #065f46;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
 .th-content {
   display: inline-flex;
   width: 100%;
@@ -1300,4 +1348,145 @@ textarea:focus {
   .stat-card {
     border-radius: 20px;
   }
+}
+
+/* =========================
+   THEME MODE
+========================= */
+
+[data-theme="light"] {
+  --bg: #aeb8b0;
+  --surface: #f3f4f1;
+  --surface-alt: #eceeea;
+  --text: #111111;
+  --text-soft: #6f746f;
+  --border: rgba(17, 24, 39, 0.06);
+  --card-bg: #eef0eb;
+  --table-bg: #f8f8f5;
+  --input-bg: #f8f8f6;
+  --sidebar-bg: linear-gradient(180deg, #12151c 0%, #0b0d12 100%);
+}
+
+[data-theme="dark"] {
+  --bg: #0b1120;
+  --surface: #111827;
+  --surface-alt: #1f2937;
+  --text: #f9fafb;
+  --text-soft: #9ca3af;
+  --border: rgba(255, 255, 255, 0.08);
+  --card-bg: #172033;
+  --table-bg: #111827;
+  --input-bg: #1f2937;
+  --sidebar-bg: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-shell,
+.main-content {
+  background: var(--surface);
+}
+
+.sidebar {
+  background: var(--sidebar-bg);
+}
+
+.card,
+.panel,
+.stat-card {
+  background: var(--card-bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.list-item,
+.setting-row,
+.workspace-card,
+.user-card {
+  border-color: var(--border);
+}
+
+.table-wrapper,
+.data-table,
+.data-table th {
+  background: var(--table-bg);
+  border-color: var(--border);
+}
+
+.data-table th,
+.card__label,
+.card__meta,
+.panel__description,
+.setting-row__text p,
+.page-eyebrow {
+  color: var(--text-soft);
+}
+
+input,
+select,
+textarea,
+.secondary-btn,
+.icon-btn,
+.setting-row {
+  background: var(--input-bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.addClient-card,
+.confirm-card {
+  background: var(--card-bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.theme-toggle__label {
+  width: 112px;
+  height: 52px;
+  padding: 5px;
+  border-radius: 999px;
+  background: #eeeeea;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.theme-toggle__icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  font-size: 20px;
+}
+
+.theme-toggle__thumb {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+  transition: transform 0.25s ease;
+}
+
+#themeToggle:checked + .theme-toggle__label {
+  background: #111318;
+}
+
+#themeToggle:checked + .theme-toggle__label .theme-toggle__thumb {
+  transform: translateX(60px);
 }

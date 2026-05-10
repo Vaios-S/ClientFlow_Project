@@ -403,16 +403,16 @@
   ],
   "projects": [
     {
-      "clientId": "1",
+      "clientId": "2",
       "projectName": "Website Redesign",
-      "clientName": "Aegean Softworks",
-      "teamMembers": "Nikos Papadopoulos",
-      "email": "nikos.papadopoulos@company.com",
-      "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
+      "clientName": "Blue Harbor Logistics",
+      "teamMembers": "Eleni Stavrou",
+      "email": "eleni.stavrou@company.com",
+      "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
       "status": "Completed",
-      "priority": "Low",
-      "dueDate": "2026-05-10",
-      "budget": "100.00",
+      "priority": "Medium",
+      "dueDate": "2026-06-09",
+      "budget": "200.00",
       "id": "ooSlAuBsaR8"
     },
     {
@@ -422,8 +422,8 @@
       "teamMembers": "Maria Konstantinou",
       "email": "maria.konstantinou@company.com",
       "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
-      "status": "Completed",
-      "priority": "Medium",
+      "status": "Review",
+      "priority": "High",
       "dueDate": "2026-04-26",
       "budget": "100.00",
       "id": "WGWERXOqgn0"
@@ -435,8 +435,8 @@
       "teamMembers": "Giorgos Alexiou",
       "email": "giorgos.alexiou@company.com",
       "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
-      "status": "Completed",
-      "priority": "Low",
+      "status": "Planning",
+      "priority": "High",
       "dueDate": "2026-05-03",
       "budget": "1000.00",
       "id": "LDN8v3TacFg"
@@ -448,8 +448,8 @@
       "teamMembers": "Eleni Stavrou",
       "email": "eleni.stavrou@company.com",
       "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
-      "status": "Blocked",
-      "priority": "High",
+      "status": "Planning",
+      "priority": "Medium",
       "dueDate": "2026-05-10",
       "budget": "1000.00",
       "id": "-0q2xHOS_YM"
@@ -622,32 +622,6 @@
       "dueDate": "2026-04-26",
       "budget": "1000.00",
       "id": "dFHlN6-FGY0"
-    },
-    {
-      "clientId": "5",
-      "projectName": "Data Migration Project",
-      "clientName": "MediCore Solutions",
-      "teamMembers": "Sofia Karagianni",
-      "email": "sofia.karagianni@company.com",
-      "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
-      "status": "Completed",
-      "priority": "Low",
-      "dueDate": "2026-04-23",
-      "budget": "1000.00",
-      "id": "ipzQCg2Xha4"
-    },
-    {
-      "clientId": "13",
-      "projectName": "Email Automation System",
-      "clientName": "FreshMart Distribution",
-      "teamMembers": "Sofia Karagianni",
-      "email": "sofia.karagianni@company.com",
-      "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
-      "status": "Completed",
-      "priority": "High",
-      "dueDate": "2026-04-25",
-      "budget": "1000.00",
-      "id": "yNIZAldw-3k"
     }
   ],
   "teamMembers": [
@@ -661,7 +635,12 @@
       "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
       "status": "active",
       "location": "Athens, Greece",
-      "skills": ["HTML", "CSS", "JavaScript", "React"],
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React"
+      ],
       "joinDate": "2023-02-14"
     },
     {
@@ -674,7 +653,12 @@
       "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
       "status": "active",
       "location": "Thessaloniki, Greece",
-      "skills": ["Figma", "Wireframing", "Prototyping", "Design Systems"],
+      "skills": [
+        "Figma",
+        "Wireframing",
+        "Prototyping",
+        "Design Systems"
+      ],
       "joinDate": "2022-09-01"
     },
     {
@@ -687,7 +671,12 @@
       "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
       "status": "active",
       "location": "Patras, Greece",
-      "skills": ["Node.js", "Express", "MongoDB", "REST APIs"],
+      "skills": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "REST APIs"
+      ],
       "joinDate": "2021-06-20"
     },
     {
@@ -700,7 +689,12 @@
       "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
       "status": "active",
       "location": "Athens, Greece",
-      "skills": ["Agile", "Scrum", "Planning", "Team Coordination"],
+      "skills": [
+        "Agile",
+        "Scrum",
+        "Planning",
+        "Team Coordination"
+      ],
       "joinDate": "2020-11-10"
     },
     {
@@ -713,7 +707,12 @@
       "avatar": "https://randomuser.me/api/portraits/men/54.jpg",
       "status": "active",
       "location": "Heraklion, Greece",
-      "skills": ["Manual Testing", "Automation", "Cypress", "Test Cases"],
+      "skills": [
+        "Manual Testing",
+        "Automation",
+        "Cypress",
+        "Test Cases"
+      ],
       "joinDate": "2024-01-08"
     },
     {
@@ -726,7 +725,12 @@
       "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
       "status": "on leave",
       "location": "Larisa, Greece",
-      "skills": ["SEO", "Content Marketing", "Social Media", "Campaigns"],
+      "skills": [
+        "SEO",
+        "Content Marketing",
+        "Social Media",
+        "Campaigns"
+      ],
       "joinDate": "2023-05-17"
     },
     {
@@ -739,7 +743,12 @@
       "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
       "status": "active",
       "location": "Athens, Greece",
-      "skills": ["Docker", "CI/CD", "AWS", "Linux"],
+      "skills": [
+        "Docker",
+        "CI/CD",
+        "AWS",
+        "Linux"
+      ],
       "joinDate": "2022-03-29"
     },
     {

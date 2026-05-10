@@ -6,7 +6,7 @@
     <title>Projects - ClientFlow</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body data-theme="light">
     <div class="app-shell">
       <aside class="sidebar" id="sidebar-container"></aside>
 
@@ -355,26 +355,6 @@
               option.value = member.fullName;
               option.innerHTML = `${member.fullName} / ${member.department}`;
               teamMembersSelect.appendChild(option);
-            });
-          });
-      }
-
-      function fetchSideBar() {
-        fetch("sidebar.html")
-          .then((response) => response.text())
-          .then((sidebarHtml) => {
-            document.getElementById("sidebar-container").innerHTML =
-              sidebarHtml;
-
-            const currentPage = window.location.pathname;
-            const links = document.querySelectorAll(".nav-item");
-
-            links.forEach((link) => {
-              link.classList.remove("nav-item--active");
-
-              if (currentPage.includes(link.getAttribute("href"))) {
-                link.classList.add("nav-item--active");
-              }
             });
           });
       }
@@ -907,8 +887,6 @@
       }
       // Initial setup
 
-      fetchSideBar();
-
       // Open the modal when clicking the "Add Project" button
       addProjectBtn.addEventListener("click", () => {
         addProjectModal.classList.add("addClient-modal");
@@ -1043,5 +1021,7 @@
           });
         });
     </script>
+
+    <script src="global.js"></script>
   </body>
 </html>

@@ -43,14 +43,20 @@
 
             <div class="setting-row">
               <div class="setting-row__text">
-                <h4>Default Project Status</h4>
-                <p>Set the default status for newly created projects.</p>
+                <h4>Theme Mode</h4>
+                <p>
+                  Choose between light and dark mode for the dashboard
+                  interface.
+                </p>
               </div>
-              <select style="max-width: 220px">
-                <option>Planning</option>
-                <option>In Progress</option>
-                <option>Review</option>
-              </select>
+              <div class="theme-toggle">
+                <input type="checkbox" id="themeToggle" />
+                <label for="themeToggle" class="theme-toggle__label">
+                  <span class="theme-toggle__icon">☀️</span>
+                  <span class="theme-toggle__icon">🌙</span>
+                  <span class="theme-toggle__thumb"></span>
+                </label>
+              </div>
             </div>
 
             <div class="setting-row">
@@ -76,31 +82,24 @@
         </section>
       </main>
     </div>
-
+    <script src="global.js"></script>
     <script>
       const emailBtn = document.getElementById("emailBtn");
+      const themeToggle = document.getElementById("themeToggle");
+      const savedTheme = localStorage.getItem("theme");
 
       let emailEnabled = true;
 
-      function fetchSideBar() {
-        fetch("sidebar.html")
-          .then((response) => response.text())
-          .then((sidebarHtml) => {
-            document.getElementById("sidebar-container").innerHTML =
-              sidebarHtml;
-
-            const currentPage = window.location.pathname;
-            const links = document.querySelectorAll(".nav-item");
-
-            links.forEach((link) => {
-              link.classList.remove("nav-item--active");
-
-              if (currentPage.includes(link.getAttribute("href"))) {
-                link.classList.add("nav-item--active");
-              }
-            });
-          });
-      }
+      themeToggle.checked = savedTheme === "dark";
+      themeToggle.addEventListener("click", () => {
+        if (themeToggle.checked) {
+          localStorage.setItem("theme", "dark");
+          document.body.dataset.theme = "dark";
+        } else {
+          localStorage.setItem("theme", "light");
+          document.body.dataset.theme = "light";
+        }
+      });
 
       emailBtn.addEventListener("click", () => {
         emailEnabled = !emailEnabled;
