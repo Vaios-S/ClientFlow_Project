@@ -1,3 +1,5 @@
+const API_BASE_URL = "http://localhost:3000/";
+
 function loadSidebar() {
   fetch("sidebar.html")
     .then((response) => response.text())
@@ -29,3 +31,7 @@ function applySavedPreferences() {
 
 loadSidebar();
 applySavedPreferences();
+
+function api(endpoint, options = {}) {
+  return fetch(`${API_BASE_URL}${endpoint}`, options);
+}

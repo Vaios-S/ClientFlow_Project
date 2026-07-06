@@ -379,26 +379,6 @@
         "lng": 25.13
       },
       "vatNumber": "EL271625340"
-    },
-    {
-      "id": "20",
-      "companyName": "CloudBridge Hosting",
-      "companyDescription": "Cloud hosting and DevOps infrastructure services.",
-      "contactPerson": "Stavros Lykos",
-      "contactRole": "DevOps Lead",
-      "email": "support@cloudbridge.com",
-      "phone": "+30 2310 555 999",
-      "website": "https://cloudbridge.com",
-      "industry": "Cloud Services",
-      "status": "Archived",
-      "address": "77 Monastiriou Street",
-      "city": "Thessaloniki",
-      "country": "Greece",
-      "geo": {
-        "lat": 40.655,
-        "lng": 22.93
-      },
-      "vatNumber": "EL282736451"
     }
   ],
   "projects": [
@@ -533,7 +513,7 @@
       "id": "oR364F2i9To"
     },
     {
-      "clientId": "20",
+      "clientId": null,
       "projectName": "Inventory Management System",
       "clientName": "CloudBridge Hosting",
       "teamMembers": "Eleni Stavrou",

@@ -309,11 +309,7 @@ function renderBudgetChart(projects) {
     },
   });
 }
-Promise.all([
-  fetch("http://localhost:3000/clients"),
-  fetch("http://localhost:3000/projects"),
-  fetch("http://localhost:3000/teamMembers"),
-])
+Promise.all([api("clients"), api("projects"), api("teamMembers")])
   .then(([clients, projects, teamMembers]) => {
     return Promise.all([clients.json(), projects.json(), teamMembers.json()]);
   })

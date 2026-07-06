@@ -52,9 +52,7 @@ cancelDelete.addEventListener("click", () => {
 confirmDelete.addEventListener("click", () => {
   if (!clientIdToDelete) return;
 
-  fetch(`http://localhost:3000/clients/${clientIdToDelete}`, {
-    method: "DELETE",
-  })
+  api(`clients/${clientIdToDelete}`, { method: "DELETE" })
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to delete client.");
@@ -136,7 +134,7 @@ function deleteClient(clientId) {
 }
 
 function updateClientStatus(clientId, status, selectElement) {
-  fetch(`http://localhost:3000/clients/${clientId}`, {
+  api(`clients/${clientId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -197,7 +195,7 @@ function editClients(clientId) {
   editClientModal.classList.add("addClient-modal");
   editedClientId = clientId;
 
-  fetch(`http://localhost:3000/clients/${clientId}`)
+  api(`clients/${clientId}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch client.");
@@ -280,7 +278,7 @@ function submitEditedClients(clients) {
       vatNumber: document.getElementById("editVatNumber").value,
     };
 
-    fetch(`http://localhost:3000/clients/${editedClientId}`, {
+    api(`clients/${editedClientId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -330,7 +328,7 @@ function addClient(clients) {
       vatNumber: document.getElementById("vatNumber").value,
     };
 
-    fetch("http://localhost:3000/clients", {
+    api("clients", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -381,7 +379,7 @@ function showToast(msg, type) {
   setTimeout(() => toastType.remove(), 2500);
 }
 
-fetch("http://localhost:3000/clients")
+api("clients")
   .then((response) => response.json())
   .then((data) => {
     clients = data;

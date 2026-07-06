@@ -33,7 +33,7 @@ let editedProjectId = null;
 //
 // Fetch clients and populate the company name dropdown
 function fetchClients() {
-  fetch("http://localhost:3000/clients")
+  api("clients")
     .then((response) => response.json())
     .then((data) => {
       companyNameSelect.innerHTML =
@@ -49,7 +49,7 @@ function fetchClients() {
 }
 
 function fetchTeam() {
-  fetch("http://localhost:3000/teamMembers")
+  api("teamMembers")
     .then((response) => response.json())
     .then((data) => {
       teamMembersSelect.innerHTML =
@@ -114,7 +114,7 @@ function createProject(clients, projects, teamMembers) {
       dueDate: document.getElementById("dueDate").value,
       budget: parseFloat(document.getElementById("budget").value).toFixed(2),
     };
-    fetch("http://localhost:3000/projects", {
+    api("projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -202,7 +202,7 @@ function deleteProject(projectId) {
 }
 
 function updateProjectStatus(projectId, status, selectElement) {
-  fetch(`http://localhost:3000/projects/${projectId}`, {
+  api(`projects/${projectId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -232,7 +232,7 @@ function updateProjectStatus(projectId, status, selectElement) {
 }
 
 function updateProjectPriority(projectId, priority, selectElement) {
-  fetch(`http://localhost:3000/projects/${projectId}`, {
+  api(`projects/${projectId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -265,7 +265,7 @@ function updateProjectPriority(projectId, priority, selectElement) {
 }
 
 function updateProjectDueDate(projectId, dueDate, selectElement) {
-  fetch(`http://localhost:3000/projects/${projectId}`, {
+  api(`projects/${projectId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -295,7 +295,7 @@ function updateProjectDueDate(projectId, dueDate, selectElement) {
 }
 
 function updateProjectBudget(projectId, budget, selectElement) {
-  fetch(`http://localhost:3000/projects/${projectId}`, {
+  api(`projects/${projectId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -442,7 +442,7 @@ function editProject(projectId) {
   editProjectModal.classList.add("addClient-modal");
   editedProjectId = projectId;
 
-  fetch("http://localhost:3000/clients")
+  api("clients")
     .then((response) => response.json())
     .then((data) => {
       document.getElementById("editCompanyName").innerHTML =
@@ -456,7 +456,7 @@ function editProject(projectId) {
       });
     });
 
-  fetch("http://localhost:3000/teamMembers")
+  api("teamMembers")
     .then((response) => response.json())
     .then((data) => {
       document.getElementById("editTeamMembers").innerHTML =
@@ -470,7 +470,7 @@ function editProject(projectId) {
       });
     });
 
-  fetch(`http://localhost:3000/projects/${projectId}`)
+  api(`projects/${projectId}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch projects.");
@@ -536,7 +536,7 @@ function submitEditedProjects(projects) {
       ),
     };
 
-    fetch(`http://localhost:3000/projects/${editedProjectId}`, {
+    api(`projects/${editedProjectId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -585,7 +585,7 @@ cancelDelete.addEventListener("click", () => {
 confirmDelete.addEventListener("click", () => {
   if (!projectIdToDelete) return;
 
-  fetch(`http://localhost:3000/projects/${projectIdToDelete}`, {
+  api(`projects/${projectIdToDelete}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -615,11 +615,7 @@ closeEditProjectModal.addEventListener("click", () => {
   editProjectModal.classList.remove("addClient-modal");
 });
 // Fetch clients and projects data in parallel and initialize the app
-Promise.all([
-  fetch("http://localhost:3000/clients"),
-  fetch("http://localhost:3000/projects"),
-  fetch("http://localhost:3000/teamMembers"),
-])
+Promise.all([api("clients"), api("projects"), api("teamMembers")])
   .then(([clientsData, projectsData, teamMembersData]) => {
     return Promise.all([
       clientsData.json(),
