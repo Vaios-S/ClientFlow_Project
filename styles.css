@@ -541,7 +541,7 @@ textarea {
 }
 
 .placeholder-box {
-  min-height: 220px;
+  min-height: 550px;
   display: grid;
   place-items: center;
   text-align: center;
@@ -1562,4 +1562,13 @@ textarea,
 [data-accent="rose"] {
   --primary: #e11d48;
   --accent: #ffe4e6;
+}
+
+.card--blocked {
+  background-color: #ef8a8a;
+}
+
+.card__label--blocked,
+.card__meta--blocked {
+  color: #751010;
 }

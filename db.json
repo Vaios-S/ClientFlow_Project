@@ -411,7 +411,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
       "status": "Completed",
       "priority": "Medium",
-      "dueDate": "2026-06-09",
+      "dueDate": "2026-09-04",
       "budget": "200.00",
       "id": "ooSlAuBsaR8"
     },
@@ -424,7 +424,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
       "status": "Review",
       "priority": "High",
-      "dueDate": "2026-04-26",
+      "dueDate": "2026-09-26",
       "budget": "100.00",
       "id": "WGWERXOqgn0"
     },
@@ -435,9 +435,9 @@
       "teamMembers": "Giorgos Alexiou",
       "email": "giorgos.alexiou@company.com",
       "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
-      "status": "Planning",
+      "status": "Blocked",
       "priority": "High",
-      "dueDate": "2026-05-03",
+      "dueDate": "2026-06-25",
       "budget": "1000.00",
       "id": "LDN8v3TacFg"
     },
@@ -450,7 +450,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
       "status": "Planning",
       "priority": "Medium",
-      "dueDate": "2026-05-10",
+      "dueDate": "2026-07-24",
       "budget": "1000.00",
       "id": "-0q2xHOS_YM"
     },
@@ -463,7 +463,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/54.jpg",
       "status": "Completed",
       "priority": "High",
-      "dueDate": "2026-05-03",
+      "dueDate": "2026-08-29",
       "budget": "100.00",
       "id": "EzCiiskrHaw"
     },
@@ -476,7 +476,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
       "status": "Blocked",
       "priority": "Medium",
-      "dueDate": "2026-04-26",
+      "dueDate": "2026-12-26",
       "budget": "1000.00",
       "id": "lcYMd9jukTc"
     },
@@ -489,7 +489,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
       "status": "Review",
       "priority": "Low",
-      "dueDate": "2026-05-10",
+      "dueDate": "2026-09-25",
       "budget": "1000.00",
       "id": "GL22Kvna0BE"
     },
@@ -502,7 +502,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
       "status": "Planning",
       "priority": "Low",
-      "dueDate": "2026-04-26",
+      "dueDate": "2026-07-26",
       "budget": "100.00",
       "id": "_AUDzsWUfyM"
     },
@@ -515,7 +515,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
       "status": "Planning",
       "priority": "Medium",
-      "dueDate": "2026-04-26",
+      "dueDate": "2026-07-26",
       "budget": "100.00",
       "id": "1M3Lbl7-9xI"
     },
@@ -528,7 +528,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
       "status": "Planning",
       "priority": "High",
-      "dueDate": "2026-04-26",
+      "dueDate": "2026-07-18",
       "budget": "1000.00",
       "id": "oR364F2i9To"
     },
@@ -541,7 +541,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
       "status": "In Progress",
       "priority": "Low",
-      "dueDate": "2026-04-26",
+      "dueDate": "2026-08-08",
       "budget": "100.00",
       "id": "tsOJ_SPBswg"
     },
@@ -554,7 +554,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/54.jpg",
       "status": "Blocked",
       "priority": "High",
-      "dueDate": "2026-05-10",
+      "dueDate": "2026-09-18",
       "budget": "1000.00",
       "id": "NIeIxcgUrnE"
     },
@@ -567,7 +567,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/62.jpg",
       "status": "Review",
       "priority": "Low",
-      "dueDate": "2026-04-26",
+      "dueDate": "2026-08-08",
       "budget": "1000.00",
       "id": "pVqGLGR6j_Q"
     },
@@ -580,7 +580,7 @@
       "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
       "status": "Review",
       "priority": "Medium",
-      "dueDate": "2026-05-03",
+      "dueDate": "2026-10-25",
       "budget": "100.00",
       "id": "h2eL46oJLPU"
     },
@@ -593,7 +593,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
       "status": "Blocked",
       "priority": "High",
-      "dueDate": "2026-05-10",
+      "dueDate": "2026-10-11",
       "budget": "1000.00",
       "id": "8FoD_0fjDFk"
     },
@@ -606,7 +606,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
       "status": "Blocked",
       "priority": "High",
-      "dueDate": "2026-04-22",
+      "dueDate": "2026-10-10",
       "budget": "1000.00",
       "id": "RlkmxpGKuIY"
     },
@@ -619,7 +619,7 @@
       "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
       "status": "Completed",
       "priority": "Medium",
-      "dueDate": "2026-04-26",
+      "dueDate": "2026-08-07",
       "budget": "1000.00",
       "id": "dFHlN6-FGY0"
     }
