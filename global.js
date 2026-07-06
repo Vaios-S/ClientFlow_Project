@@ -1,31 +1,31 @@
-//Fetch Sidebar
-
-function fetchSideBar() {
+function loadSidebar() {
   fetch("sidebar.html")
     .then((response) => response.text())
-    .then((sidebarHtml) => {
-      document.getElementById("sidebar-container").innerHTML = sidebarHtml;
-
-      const currentPage = window.location.pathname;
-      const links = document.querySelectorAll(".nav-item");
-
-      links.forEach((link) => {
-        link.classList.remove("nav-item--active");
-
-        if (currentPage.includes(link.getAttribute("href"))) {
-          link.classList.add("nav-item--active");
-        }
-      });
-    });
+    .then(setActiveNavLink);
 }
-fetchSideBar();
 
-// Toggle Theme
+function setActiveNavLink(sidebarHtml) {
+  document.getElementById("sidebar-container").innerHTML = sidebarHtml;
 
-let theme = localStorage.getItem("theme");
-document.body.dataset.theme = theme || "light";
+  const currentPage = window.location.pathname;
+  const links = document.querySelectorAll(".nav-item");
 
-// Toggle Accent
+  links.forEach((link) => {
+    link.classList.remove("nav-item--active");
 
-let accent = localStorage.getItem("accent");
-document.body.dataset.accent = accent || "lime";
+    if (currentPage.includes(link.getAttribute("href"))) {
+      link.classList.add("nav-item--active");
+    }
+  });
+}
+
+function applySavedPreferences() {
+  let theme = localStorage.getItem("theme");
+  document.body.dataset.theme = theme || "light";
+
+  let accent = localStorage.getItem("accent");
+  document.body.dataset.accent = accent || "lime";
+}
+
+loadSidebar();
+applySavedPreferences();
