@@ -1572,3 +1572,7 @@ textarea,
 .card__meta--blocked {
   color: #751010 !important;
 }
+
+.empty-state {
+  color: #6f746f;
+}

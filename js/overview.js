@@ -36,6 +36,11 @@ function renderBlockedProjects(projects) {
     (project) => project.status === "Blocked",
   );
 
+  if (blockedProjects.length === 0) {
+    renderEmptyState(blockedList, "No blocked projects.");
+    return;
+  }
+
   const blockedProjectsSorted = blockedProjects.sort(
     (a, b) => new Date(a.dueDate) - new Date(b.dueDate),
   );

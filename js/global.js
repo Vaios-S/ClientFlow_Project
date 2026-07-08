@@ -35,3 +35,7 @@ applySavedPreferences();
 function api(endpoint, options = {}) {
   return fetch(`${API_BASE_URL}${endpoint}`, options);
 }
+
+function renderEmptyState(container, message) {
+  container.innerHTML = `<p class="empty-state">${message}</p>`;
+}
