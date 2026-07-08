@@ -161,6 +161,16 @@ function fetchProjects(projects) {
                                       </tr>`;
   renderProjectsTable.appendChild(thred);
   const tbody = document.createElement("tbody");
+
+  if (projects.length === 0) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 10;
+    renderEmptyState(cell, "No projects found.");
+    row.appendChild(cell);
+    tbody.appendChild(row);
+  }
+
   projects.forEach((project) => {
     const row = document.createElement("tr");
     row.innerHTML = `<td><a class="table-link" href="#">${project.projectName}</a></td>

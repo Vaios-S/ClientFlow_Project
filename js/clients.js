@@ -168,6 +168,16 @@ function renderClients(clients) {
   tablebodyIn.innerHTML = "";
 
   const tbody = document.createElement("tbody");
+
+  if (clients.length === 0) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 6;
+    renderEmptyState(cell, "No clients found.");
+    row.appendChild(cell);
+    tablebodyIn.appendChild(row);
+    return;
+  }
   clients.forEach((client) => {
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -224,6 +234,7 @@ function editClients(clientId) {
 
 function getFilteredClients(clients) {
   let filteredClients = [...clients];
+
   const searchValue = searchClients.value.toLowerCase().trim();
 
   const selectedIndustryValue = selectedIndustry.value;
