@@ -46,3 +46,21 @@ function showErrorMessage(message) {
     errorContainer.textContent = message;
   }
 }
+
+function showPageError(message) {
+  const pageError = document.getElementById("pageError");
+  const errorMessage = document.querySelector("#page-error__message");
+
+  if (!pageError) return;
+
+  pageError.classList.remove("hidden");
+  errorMessage.textContent = message;
+}
+
+function hidePageError() {
+  const pageError = document.getElementById("pageError");
+
+  if (!pageError) return;
+
+  pageError.classList.add("hidden");
+}
