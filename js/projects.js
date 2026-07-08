@@ -34,7 +34,13 @@ let editedProjectId = null;
 // Fetch clients and populate the company name dropdown
 function fetchClients() {
   api("clients")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch clients.");
+      }
+      return response.json();
+    })
+
     .then((data) => {
       companyNameSelect.innerHTML =
         '<option value="Select a Company">Select a Company...</option>';

@@ -39,3 +39,10 @@ function api(endpoint, options = {}) {
 function renderEmptyState(container, message) {
   container.innerHTML = `<p class="empty-state">${message}</p>`;
 }
+
+function showErrorMessage(message) {
+  const errorContainer = document.getElementById("errorContainer");
+  if (errorContainer) {
+    errorContainer.textContent = message;
+  }
+}
