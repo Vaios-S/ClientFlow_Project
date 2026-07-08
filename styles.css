@@ -1565,10 +1565,10 @@ textarea,
 }
 
 .card--blocked {
-  background-color: #ef8a8a;
+  background-color: #ef8a8a !important;
 }
 
 .card__label--blocked,
 .card__meta--blocked {
-  color: #751010;
+  color: #751010 !important;
 }

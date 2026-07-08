@@ -140,95 +140,27 @@ function renderStatusChart(projects) {
 }
 
 function renderBudgetChart(projects) {
-  let sumElStaIni = 0;
-  let sumNikPapIni = 0;
-  let sumMarKonIni = 0;
-  let sumGioAleIni = 0;
-  let sumDimKarIni = 0;
-  let sumSofKarIni = 0;
-  let sumAntRizIni = 0;
-  let sumNatPetIni = 0;
+  const budgetByMember = {};
 
-  const elSta = projects.filter(
-    (project) => project.teamMembers === "Eleni Stavrou",
-  );
-  const sumElSta = elSta.forEach((b) => {
-    sumElStaIni += parseFloat(b.budget);
+  projects.forEach((project) => {
+    const member = project.teamMembers;
+    const budget = project.budget;
+
+    if (!budgetByMember[member]) {
+      budgetByMember[member] = 0;
+    }
+    budgetByMember[member] += parseFloat(budget);
   });
 
-  const nikPap = projects.filter(
-    (project) => project.teamMembers === "Nikos Papadopoulos",
-  );
-  const sumNikPap = nikPap.forEach((b) => {
-    sumNikPapIni += parseFloat(b.budget);
-  });
+  const labels = Object.keys(budgetByMember);
+  const data = Object.values(budgetByMember);
 
-  const marKon = projects.filter(
-    (project) => project.teamMembers === "Maria Konstantinou",
-  );
-  const sumMarKon = marKon.forEach((b) => {
-    sumMarKonIni += parseFloat(b.budget);
-  });
-
-  const gioAle = projects.filter(
-    (project) => project.teamMembers === "Giorgos Alexiou",
-  );
-  const sumGioAle = gioAle.forEach((b) => {
-    sumGioAleIni += parseFloat(b.budget);
-  });
-
-  const dimKar = projects.filter(
-    (project) => project.teamMembers === "Dimitris Karalis",
-  );
-  const sumDimKar = dimKar.forEach((b) => {
-    sumDimKarIni += parseFloat(b.budget);
-  });
-
-  const sofKar = projects.filter(
-    (project) => project.teamMembers === "Sofia Karagianni",
-  );
-  const sumSofKar = sofKar.forEach((b) => {
-    sumSofKarIni += parseFloat(b.budget);
-  });
-
-  const antRiz = projects.filter(
-    (project) => project.teamMembers === "Antonis Rizos",
-  );
-  const sumAntRiz = antRiz.forEach((b) => {
-    sumAntRizIni += parseFloat(b.budget);
-  });
-
-  const natPet = projects.filter(
-    (project) => project.teamMembers === "Natalia Petrou",
-  );
-  const sumNatPet = natPet.forEach((b) => {
-    sumNatPetIni += parseFloat(b.budget);
-  });
-
-  const data = {
-    labels: [
-      "Nikos Papadopoulos",
-      "Maria Konstantinou",
-      "Giorgos Alexiou",
-      "Eleni Stavrou",
-      "Dimitris Karalis",
-      "Sofia Karagianni",
-      "Antonis Rizos",
-      "Natalia Petrou",
-    ],
+  const chartData = {
+    labels: labels,
     datasets: [
       {
         label: "",
-        data: [
-          sumNikPapIni,
-          sumMarKonIni,
-          sumGioAleIni,
-          sumElStaIni,
-          sumDimKarIni,
-          sumSofKarIni,
-          sumAntRizIni,
-          sumNatPetIni,
-        ],
+        data: data,
         backgroundColor: [
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
@@ -248,7 +180,7 @@ function renderBudgetChart(projects) {
 
   new Chart(budgetChart, {
     type: "doughnut",
-    data: data,
+    data: chartData,
 
     plugins: [ChartDataLabels],
 
