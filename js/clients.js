@@ -390,12 +390,18 @@ function showToast(msg, type) {
   setTimeout(() => toastType.remove(), 2500);
 }
 
+showPageError(
+  "An error occurred while fetching clients. Please try again later.",
+);
+
 api("clients")
   .then((response) => response.json())
   .then((data) => {
     clients = data;
     let sortState = 0;
     let sortStateStatus = 0;
+
+    hidePageError();
 
     refreshUI();
 
@@ -486,6 +492,8 @@ api("clients")
     });
   })
 
-  .catch((error) => {
-    console.log("Error:", error);
+  .catch(() => {
+    showPageError(
+      "An error occurred while fetching clients. Please try again later.",
+    );
   });

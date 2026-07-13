@@ -246,13 +246,23 @@ function renderBudgetChart(projects) {
     },
   });
 }
+
+showPageError("An error occurred while fetching data. Please try again later.");
+
 Promise.all([api("clients"), api("projects"), api("teamMembers")])
   .then(([clients, projects, teamMembers]) => {
     return Promise.all([clients.json(), projects.json(), teamMembers.json()]);
   })
   .then(([clients, projects, teamMembers]) => {
+    hidePageError();
+
     updateStats(projects);
     renderBlockedProjects(projects);
     renderStatusChart(projects);
     renderBudgetChart(projects);
-  });
+  })
+  .catch(() =>
+    showPageError(
+      "An error occurred while fetching data. Please try again later.",
+    ),
+  );

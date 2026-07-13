@@ -49,18 +49,21 @@ function showErrorMessage(message) {
 
 function showPageError(message) {
   const pageError = document.getElementById("pageError");
-  const errorMessage = document.querySelector("#page-error__message");
-
+  const errorMessage = document.querySelector(".page-error__message");
+  const main = document.querySelector(".main-content");
   if (!pageError) return;
 
+  main.classList.add("hidden");
   pageError.classList.remove("hidden");
   errorMessage.textContent = message;
 }
 
 function hidePageError() {
   const pageError = document.getElementById("pageError");
+  const main = document.querySelector(".main-content");
 
   if (!pageError) return;
 
   pageError.classList.add("hidden");
+  main.classList.remove("hidden");
 }

@@ -630,6 +630,11 @@ confirmDelete.addEventListener("click", () => {
 closeEditProjectModal.addEventListener("click", () => {
   editProjectModal.classList.remove("addClient-modal");
 });
+
+showPageError(
+  "An error occurred while fetching Projects. Please try again later.",
+);
+
 // Fetch clients and projects data in parallel and initialize the app
 Promise.all([api("clients"), api("projects"), api("teamMembers")])
   .then(([clientsData, projectsData, teamMembersData]) => {
@@ -643,6 +648,8 @@ Promise.all([api("clients"), api("projects"), api("teamMembers")])
     clients = clientsData;
     projects = projectsData;
     teamMembers = teamMembersData;
+
+    hidePageError();
 
     fetchClients(clients);
 
@@ -708,4 +715,9 @@ Promise.all([api("clients"), api("projects"), api("teamMembers")])
         updateProjectBudget(projectId, budget, e.target);
       }
     });
-  });
+  })
+  .catch(() =>
+    showPageError(
+      "An error occurred while fetching Projects. Please try again later.",
+    ),
+  );
