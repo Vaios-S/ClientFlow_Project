@@ -67,3 +67,9 @@ function hidePageError() {
   pageError.classList.add("hidden");
   main.classList.remove("hidden");
 }
+
+const retryBtn = document.getElementById("retryBtn");
+
+retryBtn.addEventListener("click", () => {
+  location.reload();
+});
