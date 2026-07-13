@@ -1632,3 +1632,10 @@ textarea,
 .page-error__button:active {
   transform: scale(0.98);
 }
+
+.primary-btn:disabled,
+.secondary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}

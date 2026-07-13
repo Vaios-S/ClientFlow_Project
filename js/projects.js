@@ -86,6 +86,8 @@ function getPriorityClass(priority) {
   return "low";
 }
 
+const createClient = document.getElementById("createClient");
+
 // Create a new project
 function createProject(clients, projects, teamMembers) {
   const clientOptions = clients.map((client) => ({
@@ -102,6 +104,7 @@ function createProject(clients, projects, teamMembers) {
 
   projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    createClient.disabled = true;
     const projectData = {
       clientId: companyNameSelect.value,
       projectName: document.getElementById("projectName").value,
@@ -130,6 +133,8 @@ function createProject(clients, projects, teamMembers) {
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to add project.");
+          createClient.disabled = false;
+          showToast("An error occurred while adding the project.", "error");
         }
 
         return response.json();
@@ -137,12 +142,14 @@ function createProject(clients, projects, teamMembers) {
       .then((createdProject) => {
         projects.push(createdProject);
         projectForm.reset();
+        createClient.disabled = false;
         addProjectModal.classList.remove("addClient-modal");
         renderInfo(clients, projects, teamMembers);
         showToast("Project added successfully.", "success");
       })
       .catch((error) => {
         console.log("Error:", error);
+        createClient.disabled = false;
         showToast("An error occurred while adding the project.", "error");
       });
   });
