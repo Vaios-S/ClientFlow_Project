@@ -16,6 +16,7 @@ const cancelDelete = document.getElementById("cancelDelete");
 const confirmDelete = document.getElementById("confirmDelete");
 const editProjectModal = document.getElementById("editProjectModal");
 const closeEditProjectModal = document.getElementById("closeEditProjectModal");
+const createClient = document.getElementById("createClient");
 //
 //
 //
@@ -54,6 +55,7 @@ function fetchClients() {
     });
 }
 
+// Fetch team members and populate the team members dropdown
 function fetchTeam() {
   api("teamMembers")
     .then((response) => response.json())
@@ -85,8 +87,6 @@ function getPriorityClass(priority) {
   if (priority === "Medium") return "medium";
   return "low";
 }
-
-const createClient = document.getElementById("createClient");
 
 // Create a new project
 function createProject(clients, projects, teamMembers) {
@@ -224,6 +224,7 @@ function deleteProject(projectId) {
   confirmModal.classList.add("confirm-modal");
 }
 
+// Update project status
 function updateProjectStatus(projectId, status, selectElement) {
   api(`projects/${projectId}`, {
     method: "PATCH",
@@ -254,6 +255,7 @@ function updateProjectStatus(projectId, status, selectElement) {
     });
 }
 
+// Update project priority
 function updateProjectPriority(projectId, priority, selectElement) {
   api(`projects/${projectId}`, {
     method: "PATCH",
@@ -287,6 +289,7 @@ function updateProjectPriority(projectId, priority, selectElement) {
     });
 }
 
+//Update project due date
 function updateProjectDueDate(projectId, dueDate, selectElement) {
   api(`projects/${projectId}`, {
     method: "PATCH",
@@ -317,6 +320,7 @@ function updateProjectDueDate(projectId, dueDate, selectElement) {
     });
 }
 
+//Update project budget
 function updateProjectBudget(projectId, budget, selectElement) {
   api(`projects/${projectId}`, {
     method: "PATCH",
@@ -442,11 +446,13 @@ function renderClientOptions(clients) {
   });
 }
 
+// Apply filters and render the filtered projects
 function applyFilters() {
   const filteredProjects = getFilteredProjects(projects);
   renderInfo(clients, filteredProjects, teamMembers);
 }
 
+// Show toast notifications for success or error messages
 function showToast(msg, type) {
   const toastType = document.createElement("div");
   toastType.classList.add(`toast`, `toast--${type}`, `toast--show`);
@@ -461,6 +467,7 @@ function showToast(msg, type) {
   setTimeout(() => toastType.remove(), 2500);
 }
 
+// Edit project
 function editProject(projectId) {
   editProjectModal.classList.add("addClient-modal");
   editedProjectId = projectId;
@@ -517,6 +524,7 @@ function editProject(projectId) {
     });
 }
 
+// Submit edited project data
 function submitEditedProjects(projects) {
   const clientOptions = clients.map((client) => ({
     id: client.id,
@@ -598,6 +606,7 @@ closeProjectModal.addEventListener("click", () => {
   addProjectModal.classList.remove("addClient-modal");
 });
 
+//Close modal when clicking the close button
 cancelDelete.addEventListener("click", () => {
   projectIdToDelete = null;
 
@@ -605,6 +614,7 @@ cancelDelete.addEventListener("click", () => {
   confirmModal.classList.remove("confirm-modal");
 });
 
+// Confirm deletion of a project
 confirmDelete.addEventListener("click", () => {
   if (!projectIdToDelete) return;
 
@@ -634,6 +644,7 @@ confirmDelete.addEventListener("click", () => {
     });
 });
 
+//Close edit project modal when clicking the close button
 closeEditProjectModal.addEventListener("click", () => {
   editProjectModal.classList.remove("addClient-modal");
 });
