@@ -104,6 +104,7 @@ function createProject(clients, projects, teamMembers) {
 
   projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    createClient.textContent = "Creating project...";
     createClient.disabled = true;
     const projectData = {
       clientId: companyNameSelect.value,
@@ -134,6 +135,7 @@ function createProject(clients, projects, teamMembers) {
         if (!response.ok) {
           throw new Error("Failed to add project.");
           createClient.disabled = false;
+          createClient.textContent = "Create Project";
           showToast("An error occurred while adding the project.", "error");
         }
 
@@ -143,6 +145,7 @@ function createProject(clients, projects, teamMembers) {
         projects.push(createdProject);
         projectForm.reset();
         createClient.disabled = false;
+        createClient.textContent = "Create Project";
         addProjectModal.classList.remove("addClient-modal");
         renderInfo(clients, projects, teamMembers);
         showToast("Project added successfully.", "success");

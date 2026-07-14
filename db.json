@@ -591,17 +591,30 @@
       "id": "RlkmxpGKuIY"
     },
     {
-      "clientId": "8",
-      "projectName": "Security Audit & Fixes",
-      "clientName": "UrbanNest Properties",
-      "teamMembers": "Natalia Petrou",
-      "email": "natalia.petrou@company.com",
-      "avatar": "https://randomuser.me/api/portraits/women/71.jpg",
-      "status": "Completed",
+      "clientId": "3",
+      "projectName": "Website Redesign",
+      "clientName": "GreenLeaf Foods",
+      "teamMembers": "Nikos Papadopoulos",
+      "email": "nikos.papadopoulos@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
+      "status": "In Progress",
       "priority": "Medium",
-      "dueDate": "2026-08-07",
-      "budget": "1000.00",
-      "id": "dFHlN6-FGY0"
+      "dueDate": "2026-07-28",
+      "budget": "654.00",
+      "id": "bf9zwHSop2c"
+    },
+    {
+      "clientId": "1",
+      "projectName": "test",
+      "clientName": "Aegean Softworks",
+      "teamMembers": "Nikos Papadopoulos",
+      "email": "nikos.papadopoulos@company.com",
+      "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
+      "status": "Planning",
+      "priority": "Low",
+      "dueDate": "2026-07-30",
+      "budget": "90.00",
+      "id": "FD7p0BoJt3E"
     }
   ],
   "teamMembers": [
