@@ -15,11 +15,11 @@ const sortByName = document.getElementById("sortByName");
 const sortByStatus = document.getElementById("sortByStatus");
 const editClientModal = document.getElementById("editClientModal");
 const closeEditClientModal = document.getElementById("closeEditClientModal");
-
 const toastContainer = document.getElementById("toastContainer");
 const confirmModal = document.getElementById("confirmModal");
 const cancelDelete = document.getElementById("cancelDelete");
 const confirmDelete = document.getElementById("confirmDelete");
+const input = document.querySelectorAll("input");
 
 //
 //
@@ -338,6 +338,102 @@ function addClient(clients) {
       country: document.getElementById("country").value,
       vatNumber: document.getElementById("vatNumber").value,
     };
+    input.forEach((inp) => inp.classList.remove("input-error"));
+
+    if (
+      !clientData.companyName &&
+      !clientData.contactPerson &&
+      !clientData.contactRole &&
+      !clientData.email &&
+      !clientData.phone &&
+      !clientData.industry &&
+      !clientData.address &&
+      !clientData.city &&
+      !clientData.country &&
+      !clientData.vatNumber
+    ) {
+      input.forEach((inp) => inp.classList.add("input-error"));
+      showToast("Please fill in all required fields.", "error");
+      return;
+    }
+    if (
+      clientData.companyName.trim() === "" ||
+      clientData.companyName.length < 3
+    ) {
+      input[0].classList.add("input-error");
+      showToast("Company Name must be at least 3 characters long.", "error");
+      return;
+    }
+
+    if (
+      clientData.contactPerson.trim() === "" ||
+      clientData.contactPerson.length < 3
+    ) {
+      input[2].classList.add("input-error");
+      showToast("Contact Person must be at least 3 characters long.", "error");
+      return;
+    }
+
+    if (
+      clientData.contactRole.trim() === "" ||
+      clientData.contactRole.length < 3
+    ) {
+      input[3].classList.add("input-error");
+      showToast("Contact Role must be at least 3 characters long.", "error");
+      return;
+    }
+
+    if (clientData.email.trim() === "" || clientData.email.length < 3) {
+      input[4].classList.add("input-error");
+      showToast("Please enter a valid email address.", "error");
+      return;
+    }
+
+    if (clientData.email.trim() === "" || clientData.email.length < 3) {
+      input[4].classList.add("input-error");
+      showToast("Please enter a valid email address.", "error");
+      return;
+    }
+
+    const phoneRegex = /^\+?[1-9]\d{6,14}$/;
+
+    const cleanedPhone = clientData.phone.replace(/[\s()-]/g, "");
+
+    if (clientData.phone.trim() === "" || !phoneRegex.test(cleanedPhone)) {
+      input[5].classList.add("input-error");
+      showToast("Please enter a valid phone number.", "error");
+      return;
+    }
+
+    if (clientData.industry.trim() === "" || clientData.industry.length < 3) {
+      input[7].classList.add("input-error");
+      showToast("Industry must be at least 3 characters long.", "error");
+      return;
+    }
+
+    if (clientData.address.trim() === "" || clientData.address.length < 3) {
+      input[11].classList.add("input-error");
+      showToast("Address must be at least 3 characters long.", "error");
+      return;
+    }
+
+    if (clientData.city.trim() === "" || clientData.city.length < 3) {
+      input[12].classList.add("input-error");
+      showToast("City must be at least 3 characters long.", "error");
+      return;
+    }
+
+    if (clientData.country.trim() === "" || clientData.country.length < 3) {
+      input[13].classList.add("input-error");
+      showToast("Country must be at least 3 characters long.", "error");
+      return;
+    }
+
+    if (clientData.vatNumber.trim() === "" || clientData.vatNumber.length < 3) {
+      input[14].classList.add("input-error");
+      showToast("VAT Number must be at least 3 characters long.", "error");
+      return;
+    }
 
     api("clients", {
       method: "POST",
