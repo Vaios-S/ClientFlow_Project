@@ -17,6 +17,8 @@ const confirmDelete = document.getElementById("confirmDelete");
 const editProjectModal = document.getElementById("editProjectModal");
 const closeEditProjectModal = document.getElementById("closeEditProjectModal");
 const createClient = document.getElementById("createClient");
+const projectForm = document.getElementById("projectForm");
+
 //
 //
 //
@@ -100,7 +102,6 @@ function createProject(clients, projects, teamMembers) {
     avatar: member.avatar,
     email: member.email,
   }));
-  const projectForm = document.getElementById("projectForm");
 
   projectForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -124,6 +125,24 @@ function createProject(clients, projects, teamMembers) {
       dueDate: document.getElementById("dueDate").value,
       budget: parseFloat(document.getElementById("budget").value).toFixed(2),
     };
+
+    if (!projectData.clientName) {
+      showToast("Please fill in the Comapany name.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
+      return;
+    }
+
+    if (
+      !projectData.teamMembers ||
+      projectData.teamMembers === "Select a Team Member"
+    ) {
+      showToast("Please fill in the team member.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
+      return;
+    }
+
     api("projects", {
       method: "POST",
       headers: {
@@ -151,7 +170,6 @@ function createProject(clients, projects, teamMembers) {
         showToast("Project added successfully.", "success");
       })
       .catch((error) => {
-        console.log("Error:", error);
         createClient.disabled = false;
         showToast("An error occurred while adding the project.", "error");
       });

@@ -1639,3 +1639,13 @@ textarea,
   cursor: not-allowed;
   pointer-events: none;
 }
+
+.input-error {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-soft);
+}
+
+.input-error:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-soft);
+}
