@@ -20,6 +20,7 @@ const confirmModal = document.getElementById("confirmModal");
 const cancelDelete = document.getElementById("cancelDelete");
 const confirmDelete = document.getElementById("confirmDelete");
 const input = document.querySelectorAll("input");
+const createClient = document.getElementById("createClient");
 
 //
 //
@@ -322,6 +323,8 @@ function submitEditedClients(clients) {
 function addClient(clients) {
   const clientForm = document.getElementById("clientForm");
   clientForm.addEventListener("submit", (e) => {
+    createClient.textContent = "Creating Client...";
+    createClient.disabled = true;
     e.preventDefault();
     const clientData = {
       companyName: document.getElementById("companyName").value,
@@ -354,6 +357,8 @@ function addClient(clients) {
     ) {
       input.forEach((inp) => inp.classList.add("input-error"));
       showToast("Please fill in all required fields.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
     if (
@@ -362,6 +367,8 @@ function addClient(clients) {
     ) {
       input[0].classList.add("input-error");
       showToast("Company Name must be at least 3 characters long.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
@@ -371,6 +378,8 @@ function addClient(clients) {
     ) {
       input[2].classList.add("input-error");
       showToast("Contact Person must be at least 3 characters long.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
@@ -380,18 +389,24 @@ function addClient(clients) {
     ) {
       input[3].classList.add("input-error");
       showToast("Contact Role must be at least 3 characters long.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
     if (clientData.email.trim() === "" || clientData.email.length < 3) {
       input[4].classList.add("input-error");
       showToast("Please enter a valid email address.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
     if (clientData.email.trim() === "" || clientData.email.length < 3) {
       input[4].classList.add("input-error");
       showToast("Please enter a valid email address.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
@@ -402,36 +417,48 @@ function addClient(clients) {
     if (clientData.phone.trim() === "" || !phoneRegex.test(cleanedPhone)) {
       input[5].classList.add("input-error");
       showToast("Please enter a valid phone number.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
     if (clientData.industry.trim() === "" || clientData.industry.length < 3) {
       input[7].classList.add("input-error");
       showToast("Industry must be at least 3 characters long.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
     if (clientData.address.trim() === "" || clientData.address.length < 3) {
       input[11].classList.add("input-error");
       showToast("Address must be at least 3 characters long.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
     if (clientData.city.trim() === "" || clientData.city.length < 3) {
       input[12].classList.add("input-error");
       showToast("City must be at least 3 characters long.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
     if (clientData.country.trim() === "" || clientData.country.length < 3) {
       input[13].classList.add("input-error");
       showToast("Country must be at least 3 characters long.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
     if (clientData.vatNumber.trim() === "" || clientData.vatNumber.length < 3) {
       input[14].classList.add("input-error");
       showToast("VAT Number must be at least 3 characters long.", "error");
+      createClient.disabled = false;
+      createClient.textContent = "Create Project";
       return;
     }
 
@@ -445,6 +472,8 @@ function addClient(clients) {
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to add client.");
+          createClient.disabled = false;
+          createClient.textContent = "Create Project";
         }
         return response.json();
       })
@@ -453,10 +482,14 @@ function addClient(clients) {
         clientForm.reset();
         addClientModal.classList.remove("addClient-modal");
         refreshUI();
+        createClient.disabled = false;
+        createClient.textContent = "Create Project";
         showToast("Client added successfully.", "success");
       })
       .catch((error) => {
         console.log("Error:", error);
+        createClient.disabled = false;
+        createClient.textContent = "Create Project";
         showToast("An error occurred while adding the client.", "error");
       });
   });
