@@ -1649,3 +1649,72 @@ textarea,
   border-color: var(--danger);
   box-shadow: 0 0 0 3px var(--danger-soft);
 }
+
+.unsaved-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.unsaved-modal__card {
+  width: min(440px, 100%);
+  padding: 28px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.22);
+}
+
+.unsaved-modal__icon {
+  margin-bottom: 12px;
+  font-size: 2.25rem;
+}
+
+.unsaved-modal__title {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+}
+
+.unsaved-modal__message {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.unsaved-modal__actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.danger-btn {
+  padding: 11px 15px;
+  color: #ffffff;
+  background: var(--danger);
+  border: none;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.danger-btn:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 520px) {
+  .unsaved-modal__actions {
+    flex-direction: column;
+  }
+
+  .unsaved-modal__actions button {
+    width: 100%;
+  }
+}

@@ -18,6 +18,9 @@ const editProjectModal = document.getElementById("editProjectModal");
 const closeEditProjectModal = document.getElementById("closeEditProjectModal");
 const createClient = document.getElementById("createClient");
 const projectForm = document.getElementById("projectForm");
+const unsavedChangesModal = document.getElementById("unsavedChangesModal");
+const keepEditingBtn = document.getElementById("keepEditingBtn");
+const discardChangesBtn = document.getElementById("discardChangesBtn");
 
 //
 //
@@ -624,6 +627,15 @@ addProjectBtn.addEventListener("click", () => {
 });
 // Close the modal when clicking the cancel button
 closeProjectModal.addEventListener("click", () => {
+  unsavedChangesModal.classList.remove("hidden");
+});
+
+keepEditingBtn.addEventListener("click", () => {
+  unsavedChangesModal.classList.add("hidden");
+});
+
+discardChangesBtn.addEventListener("click", () => {
+  unsavedChangesModal.classList.add("hidden");
   addProjectModal.classList.remove("addClient-modal");
 });
 
